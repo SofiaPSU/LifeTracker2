@@ -1,6 +1,5 @@
 const express = require("express")
 const Home = require("../models/home")
-//const security = require("../middleware/security")
 const router = express.Router()
   
 router.get("/", async (req, res, next) => {
@@ -8,4 +7,3 @@ router.get("/", async (req, res, next) => {
 })
 
 module.exports = router
-  
