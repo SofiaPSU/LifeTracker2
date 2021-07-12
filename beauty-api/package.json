@@ -2,15 +2,9 @@
   "name": "beauty-api",
   "version": "1.0.0",
   "description": "",
-<<<<<<< HEAD
-  "main": "index.js",
-  "scripts": {
-    "start":"nodemon server.js",
-=======
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
->>>>>>> a194fbc798441bac94cf1b9dbe5a7344ac5da362
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
