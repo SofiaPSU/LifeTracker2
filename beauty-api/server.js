@@ -2,8 +2,6 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const { PORT } = require("./config")
-const {BadRequestError, NotFoundError } = require("./utils/errors")
-const authRoutes = require("./routes/auth")
 
 //added by Kelsey
 // const homePage = require("./routes/home")
@@ -27,17 +25,20 @@ app.use((req, res, next)=>{
   return next(new NotFoundError)
 })
 
-app.use((err, req, res, next)=>{
+//Obehi:  Generic error handler; anything unhandled goes here. 
+app.use((err, req, res, next) => {
   const status = err.status || 500
   const message = err.message
 
   return res.status(status).json({
-    error: {message, status}
+    error: { message, status },
   })
 })
-//Sofia - changed port to use PORT from config file
+
+
+//Obehi: Backend Port 3001
 app.listen(PORT, ()=> {
-  console.log(`🚀 Server listening on port ` + PORT)
+  console.log(`🚀 Server listening on http://localhost:${PORT}`)
 })
 
 
