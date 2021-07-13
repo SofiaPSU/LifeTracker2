@@ -5,7 +5,7 @@ homepage ~ Kelsey
 
 loggin / register 
 
-database SQL 
+✅database SQL - Obehi 
 
 routes and models *
 
@@ -13,9 +13,9 @@ security middleware *
 
 server.js file *
 
-config -imported
+✅config file - Obehi
 
- db file
+✅db file - Obehi
 
 
 
