@@ -8,7 +8,10 @@ class User{
         return{
             id: user.id,
             email: user.email,
-            username: user.username
+            username: user.username,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            
         }
     }
 
@@ -40,7 +43,7 @@ class User{
     static async register(credentials){
         //user submits email and password
         //if fields missing throw an error
-        const requiredFields = ["email","username","zip_code","first_name","last_name","age", "password"]
+        const requiredFields = ["email","username","first_name","last_name", "password"]
         requiredFields.forEach(field =>{
             if(!credentials.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} in request body`)
@@ -61,10 +64,10 @@ class User{
         // create a new user in db with their info
         const result = await db.query(
            ` INSERT INTO users (
-                email, username, zip_code, first_name, last_name, age, password
-            )VALUES ($1, $2, $3, $4, $5, $6 $7)
+                email, username, zip_code, first_name, last_name, age, password, profile_pic
+            )VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id, email;`, [lowercasedEmail, credentials.username, credentials.zip_code,
-            credentials.first_name, credentials.last_name, credentials.age, hashedPw])
+            credentials.first_name, credentials.last_name, credentials.age, hashedPw, credentials.profile_pic])
         //return user
         const user = result.rows[0]
         return User.makePublicUser(user)
@@ -79,15 +82,15 @@ class User{
         const user = result.rows[0]
         return user
     }
-    // static async fetchUserByUsername(username){
-    //     if(!username){
-    //         throw new BadRequestError("No username provided")
-    //     }
-    //     const query =`SELECT * FROM users WHERE username =$1`
-    //     const result = await db.query(query, [username.toLowerCase()])
-    //     const user = result.rows[0]
-    //     return user
-    // }
+    static async fetchUserByUsername(username){
+        if(!username){
+            throw new BadRequestError("No username provided")
+        }
+        const query =`SELECT * FROM users WHERE username =$1`
+        const result = await db.query(query, [username])
+        const user = result.rows[0]
+        return user
+    }
 }
 
 module.exports = User

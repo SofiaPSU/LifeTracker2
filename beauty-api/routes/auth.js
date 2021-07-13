@@ -1,6 +1,7 @@
 const express = require("express")
 const User = require("../models/user")
 const router = express.Router()
+const security = require("../middleware/security")
 
 router.post("/login", async (req, res, next)=>{
     try {
@@ -22,5 +23,16 @@ router.post("/register", async (req,res, next)=>{
     }
 })
 
+router.get("/me", security.requireAuthenticatedUser, async (req, res, next)=>{
+    try {
+        const {username} = res.locals.username
+        const user = await User.fetchUserByUsername(username)
+        const publicUser = User.makePublicUser(user)
+        return res.status(200).json({ user: publicUser})
+        
+    } catch (err) {
+        next(err)
+    }
+})
 
 module.exports = router

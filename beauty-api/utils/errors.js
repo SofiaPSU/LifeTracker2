@@ -5,7 +5,6 @@ class ExpressError extends Error {
         this.status = status
     }
 }
-
 class BadRequestError extends ExpressError{
     constructor(message = "Bad Request"){
     super(message, 400)
