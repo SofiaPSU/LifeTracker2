@@ -1,118 +1,140 @@
-import "./Register.css"
-import { useRegistrationForm } from "../../hooks/useRegistrationForm"
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
-import axios from "axios"
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-export default function Register({ setAppState }){
- //   const {form, errors, isProcessing, handleOnChange, handleOnSubmit} = useRegistrationForm()
- const navigate = useNavigate()
- const [isLoading, setIsLoading] = useState(false)
- const [errors, setErrors] = useState({})
- const [form, setForm] = useState({
-    email: "",
-    first_name: "",
-    last_name: "",
-    age:"",
-    zip_code:"",
-    username: "",
-    password: ""
- })
- 
- const handleOnChange = (event) =>{
-    if (event.target.name === "email") {
-        if (event.target.value.indexOf("@") === -1) {
-          setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
-        } else {
-          setErrors((e) => ({ ...e, email: null }))
-        }
-      }
-  
-      setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-    }
- 
- const handleOnSubmit = async () => {
-    setIsLoading(true)
-    setErrors((e) => ({ ...e, form: null }))
-
-    try {
-        const res = await axios.post("http://localhost:3001/auth/register", {
-          date: form.date,
-          location: form.location,
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          password: form.password,
-        })
-  
-        if (res?.data?.user) {
-          setAppState(res.data)
-          setIsLoading(false)
-          navigate("/")
-        } else {
-          setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
-          setIsLoading(false)
-        }
-      } catch (err) {
-        console.log(err)
-        const message = err?.response?.data?.error?.message
-        setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-        setIsLoading(false)
-      }
- }
- 
-    return (
-        <div className = "Register">
-            <div className = "container">
-                    <h2>Register</h2>
-                    {errors?.form && <span className="error">{errors.form}</span>}
-                    <br />
-                    <div className="form">
-                        <div className="split-input">
-                            <div className="input-field">
-                                <label htmlFor="name">First Name</label>
-                                <input type="text" name ="first_name" placeholder="name" value={form.first_name} onChange = {handleOnChange}/>
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="name">Last Name</label>
-                                <input type="text" name="last_name" placeholder="name" value = {form.last_name} onChange={handleOnChange}/>
-                            </div>
-                        </div>
-                        <br />
-                        <div className="split-input">
-                            <div className="input-field">
-                                <label htmlFor="name">Age</label>
-                                <input type="text" name="age" placeholder="age" value = {form.age} onChange={handleOnChange}/>
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="name">Zip Code</label>
-                                <input type ="text" name="zip_code" placeholder="zip code" value={form.zip_code} onChange={handleOnChange}/>
-                            </div>
-                        </div>
-                        <br />
-                        <div className="input-field">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" name="username" placeholder="username" value={form.username} onChange={handleOnChange}/>
-                        </div>
-                        <div className="input-field">
-                            <label htmlFor="email">Email</label>
-                            <input type="text" name="email" placeholder="email" value={form.email} onChange={handleOnChange}/>
-                        </div>
-                        <div className="input-field">
-                            <label htmlFor="email">Password</label>
-                            <input type="password" name="password" placeholder="password" value={form.password} onChange={handleOnChange}/>
-                        </div>
-                        <button className="btn" disabled={isLoading} onClick={handleOnSubmit}>
-                            {isLoading ? "Loading..." : "Create Account"}
-                        </button>
-                      </div>
-                      <div className="footer">
-          <p>
-            Already have an account? Login <Link to="/login">here</Link>
-          </p>
-        </div>
-     </div>
-    </div>
-    )
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function SignUp() {
+  const classes = useStyles();
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="#" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}
