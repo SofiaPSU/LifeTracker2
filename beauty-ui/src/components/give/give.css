@@ -1,0 +1,60 @@
+.Give{
+    width: 100%;
+    display: block;
+}
+
+/* .card{
+    width: 1440px;
+} */
+
+.giveTitle{
+    width: 1440px;
+height: 137.94px;
+left: 0.01px;
+top: 78.94px;
+padding-right: 50px;
+
+
+background: #C4C4C4;
+transform: rotate(0deg);
+}
+
+.giveTitle h2{
+    width: 1057px;
+    height: 130px;
+    left: 192px;
+    top: 87px;
+    
+    font-family:Arima Madurai;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 90px;
+    line-height: 147px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    
+    color: #000000;
+
+
+
+}
+
+.giveDescription p{
+    width: 1035px;
+    height: 135px;
+    left: 211px;
+    top: 250px;
+
+    font-family: Arima Madurai;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.015em;
+
+    color: #020202;
+
+}

@@ -2,6 +2,9 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const { PORT } = require("./config")
+const {NotFoundError} = require("./utils/errors")
+const authRoutes = require("./routes/auth")
+const giveRoutes = require("./routes/givings")
 
 //added by Kelsey
 // const homePage = require("./routes/home")
@@ -16,10 +19,13 @@ app.use(morgan("tiny"))
 
 //Sofia - Login and Register
 app.use("/auth", authRoutes)
+//Obehi - Give Page
+app.use("/give", giveRoutes)
 
 app.get("/", async (req, res, next) => {
   res.status(200).json({ ping: "pong" })
 })
+
 //Sofia - added in error handling
 app.use((req, res, next)=>{
   return next(new NotFoundError)
