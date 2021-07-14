@@ -1,5 +1,4 @@
 import "./Register.css"
-import { Card } from "components"
 import { useRegistrationForm } from "../../hooks/useRegistrationForm"
 
 export default function Register(){
@@ -7,7 +6,6 @@ export default function Register(){
     return (
         <div className = "Register">
             <div className = "container">
-                <Card className="reg-card">
                     <h2>Register</h2>
                     {errors?.form && <span className="error">{errors.form}</span>}
                     <br />
@@ -39,7 +37,6 @@ export default function Register(){
                             <input type="text" name="username" value={form.username} onChange={handleOnChange}/>
                         </div>
                     </div>
-                </Card>
             </div>
         </div>
     )
