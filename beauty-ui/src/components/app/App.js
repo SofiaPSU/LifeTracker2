@@ -3,6 +3,8 @@ import Give from '../give/give';
 import './App.css';
 import Home from '../home/home';
 import Navbar from '../navbar/navbar';
+import Register from "../Register/Register";
+import Login from "../Login/Login"
 
 export default function App() {
 
@@ -13,6 +15,8 @@ export default function App() {
                 <Routes>
                     <Route path="/give" element={ <Give /> }/>
                     <Route path="/" element={ <Home /> }/>
+                    <Route path="/register" element={ <Register />}/>
+                    <Route path="/login" element={ <Login />}/>
                 </Routes>
                 
             </BrowserRouter>

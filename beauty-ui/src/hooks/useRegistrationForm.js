@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import apiClient from "../services/apiClient"
-import { useAuthContext } from "contexts/auth"
+import { useAuthContext } from "../Contexts/auth"
 
 
 export const useRegistrationForm=()=>{
@@ -11,18 +11,19 @@ export const useRegistrationForm=()=>{
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
       email: "",
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
+      age:"",
+      zip_code:"",
       username: "",
-      password: "",
-      passwordConfirm: "",
+      password: ""
     })
   
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
       if (user?.username) {
-        navigate("/dashboard")
+        navigate("/")
       }
     }, [user, navigate])
   
@@ -32,14 +33,6 @@ export const useRegistrationForm=()=>{
           setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
         } else {
           setErrors((e) => ({ ...e, email: null }))
-        }
-      }
-  
-      if (event.target.name === "passwordConfirm") {
-        if (event.target.value !== form.password) {
-          setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }))
-        } else {
-          setErrors((e) => ({ ...e, passwordConfirm: null }))
         }
       }
   
@@ -53,9 +46,11 @@ export const useRegistrationForm=()=>{
       const { data, error } = await apiClient.signupUser({
         email: form.email,
         username: form.username,
+        age: form.age,
+        zip_code: form.zip_code,
         password: form.password,
-        firstName: form.firstName,
-        lastName: form.lastName,
+        first_name: form.first_name,
+        last_name: form.last_name,
       })
       if (error) setErrors((e) => ({ ...e, form: error }))
       if (data) {
