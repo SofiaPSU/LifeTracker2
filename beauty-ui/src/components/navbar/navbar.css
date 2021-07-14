@@ -1,0 +1,12 @@
+.Navbar{
+    text-decoration: none;
+    position: absolute;
+    width: 1440px;
+    height: 708px;
+    left: 0px;
+    top: 140px;
+}
+.classname:visited{
+    text-decoration: none;
+    color:white;
+}
