@@ -6,7 +6,7 @@ export default function Navbar(){
                 <ul>
                     <li>
                         <a href="/">
-                            Hīrā
+                            Hīrā.
                         </a>
                     </li>
                     <li>
