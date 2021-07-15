@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import apiClient from "../services/apiClient"
 import { useAuthContext } from "../Contexts/auth"
 
-
-export const useRegistrationForm=()=>{
-    const {user, setUser} = useAuthContext()
+export const useLoginForm = ()=>{
+    const {user, setUser} =useAuthContext()
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
       email: "",
-      first_name: "",
-      last_name: "",
-      age:"",
-      zip_code:"",
-      username: "",
-      password: ""
+      password: "",
     })
   
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
-      if (user?.email) {
+      if (user?.username) {
         navigate("/")
       }
     }, [user, navigate])
@@ -41,29 +35,17 @@ export const useRegistrationForm=()=>{
   
     const handleOnSubmit = async () => {
       setIsProcessing(true)
-      setErrors((e) => ({ ...e, form: null }))
   
-      const { data, error } = await apiClient.signupUser({
-        email: form.email,
-        username: form.username,
-        age: form.age,
-        zip_code: form.zip_code,
-        password: form.password,
-        first_name: form.first_name,
-        last_name: form.last_name,
-      })
+      const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
       if (error) setErrors((e) => ({ ...e, form: error }))
       if (data) {
         setUser(data.user)
         apiClient.setToken(data.token)
-        console.log("user=", data.user)
-        console.log("token", data.token)
         localStorage.setItem("beauty_token", data.token)
       }
   
       setIsProcessing(false)
     }
-    return {
-        handleOnChange, handleOnSubmit, errors, isProcessing, form
-    }
-  }
+
+    return { handleOnSubmit, handleOnChange, isProcessing, errors, form}
+}

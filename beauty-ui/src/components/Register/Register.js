@@ -49,8 +49,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export default function Register() {
   const {form, errors, isProcessing, handleOnChange, handleOnSubmit} = useRegistrationForm()
   const classes = useStyles();
@@ -101,7 +99,6 @@ export default function Register() {
                 fullWidth
                 id="age"
                 label="Age"
-                autoFocus
                 value={form.age}
                 onChange={handleOnChange}
               />
@@ -115,7 +112,6 @@ export default function Register() {
                 label="Zip Code"
                 name="zip_code"
                 autoComplete="zip"
-                autoFocus
                 value={form.zip_code}
                 onChange={handleOnChange}
               />
@@ -173,6 +169,7 @@ export default function Register() {
             color="primary"
             variant="contained"
             className={classes.submit}
+           disabled={isProcessing}
             onClick={handleOnSubmit}
           >
             Register

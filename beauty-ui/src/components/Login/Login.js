@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { useLoginForm } from "../../hooks/useLoginForm"
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -48,15 +50,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const {form, errors, isProcessing, handleOnChange, handleOnSubmit} = useLoginForm()
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" style={{fontFamily:'Arima Madurai'}}>
+        <Typography component="h1" variant="h5" >
           Login
         </Typography>
         <form className={classes.form} noValidate>
@@ -70,6 +70,8 @@ export default function Login() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={form.email}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -82,6 +84,8 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={form.password}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -97,8 +101,10 @@ export default function Login() {
             color="primary"
             variant="contained"
             className={classes.submit}
+            onClick={handleOnSubmit}
+            disabled={isProcessing}
           >
-             <Typography component="h1" variant="button" style={{fontFamily:'Arima Madurai'}}>
+             <Typography component="h1" variant="button" >
             Login
             </Typography>
           </Button>
