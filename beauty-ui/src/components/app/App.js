@@ -14,7 +14,6 @@ export default function App() {
                     <Route path="/give" element={ <Give /> }/>
                     <Route path="/" element={ <Home /> }/>
                 </Routes>
-                
             </BrowserRouter>
         </div>
     )
