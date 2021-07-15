@@ -12,8 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import  Grid  from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { withStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +37,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// const AntSwitch = withStyles((theme) => ({
+//   root: {
+//     width: 28,
+//     height: 16,
+//     padding: 0,
+//     display: 'flex',
+//   },
+//   switchBase: {
+//     padding: 2,
+//     color: theme.palette.grey[500],
+//     '&$checked': {
+//       transform: 'translateX(12px)',
+//       color: theme.palette.common.white,
+//       '& + $track': {
+//         opacity: 1,
+//         backgroundColor: theme.palette.primary.main,
+//         borderColor: theme.palette.primary.main,
+//       },
+//     },
+//   },
+//   thumb: {
+//     width: 12,
+//     height: 12,
+//     boxShadow: 'none',
+//   },
+//   track: {
+//     border: `1px solid ${theme.palette.grey[500]}`,
+//     borderRadius: 16 / 2,
+//     opacity: 1,
+//     backgroundColor: theme.palette.common.white,
+//   },
+//   checked: {},
+// }))(Switch);
 
 export default function Give({ user,setUser }){
     const navigate = useNavigate()
@@ -46,6 +82,14 @@ export default function Give({ user,setUser }){
         zip_code:"",
         product_pic:"",
       })
+
+    
+        const [state, setState] = React.useState({
+        
+          checkedC: true
+        });
+      
+
       const handleOnInputChange = (event) => {
         // if (event.target.name === "email") {
         //   if (event.target.value.indexOf("@") === -1) {
@@ -171,7 +215,7 @@ export default function Give({ user,setUser }){
               value={form.zip_code}
               onChange={handleOnInputChange}
             />
-            <TextField
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -183,7 +227,26 @@ export default function Give({ user,setUser }){
               autoComplete="is-used"
               value={form.is_used}
               onChange={handleOnInputChange}
-            />
+            /> */}
+             <FormControl>
+                <FormControlLabel
+                  value={form.is_used}
+                  control={<Switch color="primary" />}
+                  onChange={handleOnInputChange}
+                  label="Used"
+                  labelPlacement="top"
+                />
+
+                <Typography component="div">
+                  <Grid component="label" container alignItems="center" spacing={1}>
+                    <Grid item>No</Grid>
+                    <Grid item>
+                      {/* <AntSwitch checked={state.checkedA} onChange={handleOnInputChange} name="checkedC" /> */}
+                    </Grid>
+                    <Grid item>Yes</Grid>
+                  </Grid>
+                </Typography>
+             </FormControl>
 
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -191,7 +254,8 @@ export default function Give({ user,setUser }){
             /> */}
             <Button
               type="submit"
-              fullWidth
+             fullWidth
+            
               variant="contained"
               // color="primary"
               className={classes.submit}
