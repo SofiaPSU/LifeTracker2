@@ -1,97 +1,119 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
-import "./Login.css"
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-export default function Login({ setAppState }) {
-  const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
-  const [errors, setErrors] = useState({})
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  })
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+      Hīrā
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-  const handleOnInputChange = (event) => {
-    if (event.target.name === "email") {
-      if (event.target.value.indexOf("@") === -1) {
-        setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
-      } else {
-        setErrors((e) => ({ ...e, email: null }))
-      }
-    }
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-    setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-  }
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setErrors((e) => ({ ...e, form: null }))
-
-    try {
-      const res = await axios.post(`http://localhost:3001/auth/login`, form)
-      if (res?.data) {
-        setAppState(res.data)
-        setIsLoading(false)
-        navigate("/")
-      } else {
-        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
-        setIsLoading(false)
-      }
-    } catch (err) {
-      console.log(err)
-      const message = err?.response?.data?.error?.message
-      setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-      setIsLoading(false)
-    }
-  }
+export default function Login() {
+  const classes = useStyles();
 
   return (
-    <div className="Login">
-
-      <div className="container">
-        <h2>Login</h2>
-
-        {Boolean(errors.form) && <span className="error">{errors.form}</span>}
-        <br />
-
-        <div className="form">
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={form.email}
-              onChange={handleOnInputChange}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={form.password}
-              onChange={handleOnInputChange}
-            />
-            {errors.password && <span className="error">{errors.password}</span>}
-          </div>
-
-          <button className="btn" disabled={isLoading} onClick={handleOnSubmit}>
-            {isLoading ? "Loading..." : "Login"}
-          </button>
-        </div>
-
-        <div className="footer">
-          <p>
-            Don't have an account? Sign up <Link to="/register">here</Link>
-          </p>
-        </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5" style={{fontFamily:'Arima Madurai'}}>
+          Login
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="showPassword" color="primary" />}
+                label="Show Password"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            color="primary"
+            variant="contained"
+            className={classes.submit}
+          >
+             <Typography component="h1" variant="button" style={{fontFamily:'Arima Madurai'}}>
+            Login
+            </Typography>
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/register" variant="body2">
+                Don't have an account? Register
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
       </div>
-    </div>
-  )
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
 }

@@ -13,12 +13,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { useRegistrationForm } from "../../hooks/useRegistrationForm"
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      Hīrā
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -46,31 +48,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+
+
+
+export default function Register() {
+  const {form, errors, isProcessing, handleOnChange, handleOnSubmit} = useRegistrationForm()
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
+        <Typography component="h1" variant="h4">
+          Register
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="first_name"
                 variant="outlined"
                 required
                 fullWidth
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={form.first_name}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -80,8 +85,52 @@ export default function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name="last_name"
                 autoComplete="lname"
+                value={form.last_name}
+                onChange={handleOnChange}
+              />
+            </Grid>
+        
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="age"
+                name="age"
+                variant="outlined"
+                required
+                fullWidth
+                id="age"
+                label="Age"
+                autoFocus
+                value={form.age}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="zipCode"
+                label="Zip Code"
+                name="zip_code"
+                autoComplete="zip"
+                autoFocus
+                value={form.zip_code}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                value={form.username}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +142,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={form.email}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,28 +156,31 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={form.password}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                control={<Checkbox value="showPassword" color="primary" />}
+                label="Show Password"
               />
             </Grid>
           </Grid>
           <Button
             type="submit"
             fullWidth
-            variant="contained"
             color="primary"
+            variant="contained"
             className={classes.submit}
+            onClick={handleOnSubmit}
           >
-            Sign Up
+            Register
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+              <Link href="/login" variant="body2">
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>
@@ -136,5 +190,5 @@ export default function SignUp() {
         <Copyright />
       </Box>
     </Container>
-  );
+  )
 }

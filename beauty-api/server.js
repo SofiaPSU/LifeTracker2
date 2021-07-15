@@ -5,6 +5,7 @@ const { PORT } = require("./config")
 const {NotFoundError} = require("./utils/errors")
 const authRoutes = require("./routes/auth")
 const giveRoutes = require("./routes/givings")
+const security = require("./middleware/security")
 
 //added by Kelsey
 // const homePage = require("./routes/home")
@@ -21,6 +22,8 @@ app.use(morgan("tiny"))
 app.use("/auth", authRoutes)
 //Obehi - Give Page
 app.use("/give", giveRoutes)
+//attach credentials to res.locals.user
+app.use(security.extractUserFromJwt)
 
 app.get("/", async (req, res, next) => {
   res.status(200).json({ ping: "pong" })

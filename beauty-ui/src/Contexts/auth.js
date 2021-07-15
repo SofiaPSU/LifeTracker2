@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import apiClient from "../services/apiClient";
 
 const AuthContext = createContext(null)
 
@@ -6,8 +7,42 @@ export const AuthContextProvider = ({ children })=>{
     const [user, setUser]= useState({})
     const [initialized, setInitialized] = useState(false)
     const [error, setError] = useState(null)
-    const authValue = { user, setUser, initialized, setInitialized, error, setError }
+    
 
+    const handlers = {
+        loginUser: async (credentials) => {
+          const { data, error } = await apiClient.loginUser(credentials)
+          if (data) {
+            setUser(data.user)
+            apiClient.setToken(data.token)
+            localStorage.setItem("beauty_token", data.token)
+          }
+          if (error) setError(error)
+        },
+        signupUser: async (credentials) => {
+          const { data, error } = await apiClient.signupUser(credentials)
+          if (data) {
+            setUser(data.user)
+            apiClient.setToken(data.token)
+            localStorage.setItem("beauty_token", data.token)
+          }
+          if (error) setError(error)
+        },
+        fetchUserFromToken: async () => {
+          const { data } = await apiClient.fetchUserFromToken()
+          if (data) {
+            setUser(data.user)
+          }
+          setInitialized(true)
+        },
+        logoutUser: async () => {
+          await apiClient.logoutUser()
+          setUser({})
+          setInitialized(true)
+          setError(null)
+        },
+      }
+      const authValue = { user, setUser, handlers, initialized, setInitialized, error, setError }
     return (
         <AuthContext.Provider value={authValue}>
         <>{children}</>

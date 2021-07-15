@@ -22,7 +22,7 @@ export const useRegistrationForm=()=>{
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
-      if (user?.username) {
+      if (user?.email) {
         navigate("/")
       }
     }, [user, navigate])
@@ -64,4 +64,4 @@ export const useRegistrationForm=()=>{
     return {
         handleOnChange, handleOnSubmit, errors, isProcessing, form
     }
-}
+  }
