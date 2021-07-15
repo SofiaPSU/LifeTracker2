@@ -1,6 +1,6 @@
 .Give{
     width: 100%;
-    display: block;
+    /* display: block; */
 }
 
 /* .card{
@@ -8,22 +8,14 @@
 } */
 
 .giveTitle{
-    width: 1440px;
 height: 137.94px;
-left: 0.01px;
-top: 78.94px;
-padding-right: 50px;
-
-
-background: #C4C4C4;
-transform: rotate(0deg);
+/* top: 78.94px; */
+/* padding-right: 50px; */
+/* background: #C4C4C4; */
+/* transform: rotate(0deg); */
 }
 
 .giveTitle h2{
-    width: 1057px;
-    height: 130px;
-    left: 192px;
-    top: 87px;
     
     font-family:Arima Madurai;
     font-style: normal;
@@ -33,17 +25,13 @@ transform: rotate(0deg);
     text-align: center;
     letter-spacing: -0.015em;
     
-    color: #000000;
-
-
-
 }
 
 .giveDescription p{
-    width: 1035px;
-    height: 135px;
+    /* width: 1035px; */
+    /* height: 135px;
     left: 211px;
-    top: 250px;
+    top: 250px; */
 
     font-family: Arima Madurai;
     font-style: normal;
@@ -57,4 +45,25 @@ transform: rotate(0deg);
 
     color: #020202;
 
+}
+
+.feedArea{
+    justify-content: center;
+}
+
+ .givePicture{
+    /* width: 661px; */
+     height: 87%; 
+}    
+
+
+
+.giveForm{
+    height: 588px;
+
+    border: 3px solid #2EC4B6;
+    box-sizing: border-box;
+    border-radius: 24px;
+
+    
 }
