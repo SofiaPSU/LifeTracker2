@@ -59,7 +59,6 @@ const App = ()=> {
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
                 </Routes>
-                
             </BrowserRouter>
         </div>
     )

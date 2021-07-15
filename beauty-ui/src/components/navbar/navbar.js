@@ -1,4 +1,9 @@
 import './navbar.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Button from "@material-ui/core/Button"
+import { Box, Typography } from "@material-ui/core"
+
 export default function Navbar(){
     return (
         <div>
@@ -24,16 +29,16 @@ export default function Navbar(){
                             Tips
                         </a>
                     </li>
-                    <button className="login">
+                    <Button className="login" variant="contained" color="primary">
                         <a href="/login">
                             Log In
                         </a>
-                    </button>
-                    <button className="register">
+                    </Button>
+                    <Button className="register" variant="contained" color="primary">
                         <a href="/register">
                             Register
                         </a>
-                    </button>
+                    </Button>
                 </ul>
             </nav>
         </div>
