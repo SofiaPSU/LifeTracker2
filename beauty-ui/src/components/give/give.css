@@ -8,7 +8,7 @@
 } */
 
 .giveTitle{
-    width: 1440px;
+    width: 1280px;
 height: 137.94px;
 left: 0.01px;
 top: 78.94px;
@@ -58,3 +58,40 @@ transform: rotate(0deg);
     color: #020202;
 
 }
+
+.feedArea{
+    display: flex;
+    grid-column-gap: 5%;
+}
+
+.givePicture{
+    width: 661px;
+    height: 585px;
+    margin-left: 80px;
+}
+
+.giveForm{
+    width: 369px;
+    height: 588px;
+
+    border: 3px solid #2EC4B6;
+    box-sizing: border-box;
+    border-radius: 24px;
+    grid-auto-columns: auto;
+}
+
+.giveForm h3{
+    width: 358px;
+    height: 76px;
+
+    font-family: Arima Madurai;
+font-style: normal;
+font-weight: normal;
+font-size: 64px;
+line-height: 105px;
+text-align: center;
+letter-spacing: -0.015em;
+
+}
+
+
