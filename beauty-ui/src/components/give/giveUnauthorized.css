@@ -1,0 +1,68 @@
+.giveUnauthorized{
+    width: 100%;
+    /* display: block; */
+}
+
+.giveTitle{
+    height: 137.94px;
+    /* top: 78.94px; */
+    /* padding-right: 50px; */
+    /* background: #C4C4C4; */
+    /* transform: rotate(0deg); */
+    }
+    
+    .giveTitle h2{
+        
+        font-family:Arima Madurai;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 90px;
+        line-height: 147px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        
+    }
+
+    p{
+        /* width: 1035px; */
+        /* height: 135px;
+        left: 211px;
+        top: 250px; */
+    
+        font-family: Arima Madurai;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 39px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.015em;
+    
+        color: #020202;
+    
+    }
+
+    .feedPlace{
+        justify-content: center;
+    }
+
+    .giveWarning{
+        height: 250px;
+    
+        border: 3px solid #2EC4B6;
+        box-sizing: border-box;
+        border-radius: 24px;
+    
+        
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    a:visited{
+        text-decoration: none;
+        color:black
+    }

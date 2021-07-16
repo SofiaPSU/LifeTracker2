@@ -38,7 +38,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                             Tips
                         </Link>
                     </li>
-                    
+        
                     {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
                             Logout
                     </Button>):(<><Button className="login" variant="contained" color="primary">
@@ -46,6 +46,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                             Log In
                             </Link>
                     </Button>
+
                     <Button className="register" variant="contained" color="primary">
                         <Link to="/register">
                             Register
