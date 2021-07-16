@@ -32,7 +32,7 @@ router.get("/me",  async (req, res, next)=>{
     console.log("local=", res.locals)
     try {
         const {user} = res.locals
-        const username = await User.fetchUserByUsername(user)
+        const username = await User.fetchUserByUsername(user.username)
         console.log(username)
         const publicUser = User.makePublicUser(username)
         return res.status(200).json({ user: publicUser})
