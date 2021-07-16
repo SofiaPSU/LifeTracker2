@@ -2,8 +2,9 @@ import './home.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles } from "@material-ui/core"
+import { Box, Typography, makeStyles, Grid } from "@material-ui/core"
 import Container from '@material-ui/core/Container';
+
 
 
 var moisturizers= <img src="https://images.unsplash.com/photo-1575410229391-19b4da01cc94?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fGZhY2UlMjBtb2lzdHVyaXplcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="moisturizers"/>
@@ -36,12 +37,58 @@ wrapper: {
     width: "50%",
     marginLeft: "auto",
     marginRight: "auto",
+
+    fontFamily: "Arima Madurai",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 25,
+    textAlign: "center",
+    letterSpacing: "-0.015em",
+    color: "#000000",
+
   },
   registerBTN: {
     marginTop: 10, // space between outer edge and adjacent elements 
     padding: 20, //space between content , outer edge
     width: 200,
-    p: "#8F5338",
+
+    fontFamily: "Arima Madurai",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 25,
+
+    textAlign: "center",
+    letterSpacing: "-0.015em",
+    background: "#96583C",
+    color: "#FFFFFF",
+  },
+
+  bottom: {
+
+    width: '100vw',
+    marginLeft: "auto",
+    marginRight: "auto",
+
+    fontFamily: "Arima Madurai",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 25,
+    textAlign: "center",
+    letterSpacing: "-0.015em",
+    color: "#000000",
+    background: "#5C625E",
+
+  },
+
+  skincare: {
+    fontFamily: "Euclid Circular A",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 40,
+    lineHeight: 51,
+    letterSpacing: "-0.015em",
+    color: "#96583C",
+
   }
 }));
 
@@ -55,17 +102,28 @@ export default function Home() {
 
   return (
 
-      <Box className={classes.wrapper}>
-          <Typography variant="h1" className={classes.title}>
-              Making Beauty Sustainable
-          </Typography>
-          <Typography variant="body1" className={classes.subtitle}>
-          Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
-          </Typography>
-          <Button variant="contained" color="default" className={classes.registerBTN}>
-              Register
-          </Button>
-      </Box>
+    <div>
+        <Box className={classes.wrapper}>
+            <Typography variant="h1" className={classes.title}>
+                Making Beauty Sustainable
+            </Typography>
+            <Typography variant="body1" className={classes.subtitle}>
+            Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
+            </Typography>
+            <Button variant="contained" color="default" className={classes.registerBTN}>
+                Register
+            </Button>
+        </Box>
+        <Container className={classes.bottom}>
+        We accept most skincare and makeup products for donations and recycling. We priotize  the products that most people use as part of their daily routine. Whether they come in paper, plastic, or glass, we will gladly accept them. Here are some of examples of what we accept....
+        </Container>
+        <Container className={classes.skincare}>
+            Skincare
+        </Container>
+        <Grid className="skincare-examples">
+
+        </Grid>
+      </div>
   );
 }
 
