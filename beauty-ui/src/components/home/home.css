@@ -31,3 +31,9 @@
 
     background: #FFFFFF;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@500&display=swap');
+
+.title{
+    font-family : 'Arima Madurai', cursive ;
+    font-weight: bold;
+}
