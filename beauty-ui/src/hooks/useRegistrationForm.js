@@ -18,7 +18,7 @@ export const useRegistrationForm=()=>{
       username: "",
       password: ""
     })
-  
+    const [hide, show] = useState(true)
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
@@ -38,7 +38,11 @@ export const useRegistrationForm=()=>{
   
       setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
-  
+
+    const showPasswordBox = () =>{
+      show(hide ? false : true)
+}
+
     const handleOnSubmit = async () => {
       setIsProcessing(true)
       setErrors((e) => ({ ...e, form: null }))
@@ -64,6 +68,6 @@ export const useRegistrationForm=()=>{
       setIsProcessing(false)
     }
     return {
-        handleOnChange, handleOnSubmit, errors, isProcessing, form
+        handleOnChange, handleOnSubmit, errors, isProcessing, form, showPasswordBox, hide
     }
   }

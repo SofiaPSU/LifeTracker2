@@ -12,15 +12,20 @@ export const useLoginForm = ()=>{
       email: "",
       password: "",
     })
-  
+    const [hide, show]= useState(true)
+
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
-      if (user?.username) {
+      console.log(user)
+      if (user?.email) {
         navigate("/")
       }
     }, [user, navigate])
-  
+    
+    const showPasswordBox = () =>{
+      show(hide ? false : true)
+}
     const handleOnChange = (event) => {
       if (event.target.name === "email") {
         if (event.target.value.indexOf("@") === -1) {
@@ -32,10 +37,12 @@ export const useLoginForm = ()=>{
   
       setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
-  
-    const handleOnSubmit = async () => {
+
+
+    const handleOnSubmit = async (event) => {
+      event.preventDefault()
       setIsProcessing(true)
-  
+      
       const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
       if (error) setErrors((e) => ({ ...e, form: error }))
       if (data) {
@@ -47,5 +54,5 @@ export const useLoginForm = ()=>{
       setIsProcessing(false)
     }
 
-    return { handleOnSubmit, handleOnChange, isProcessing, errors, form}
+    return { handleOnSubmit, handleOnChange, isProcessing, errors, form, showPasswordBox, hide}
 }
