@@ -44,6 +44,10 @@ class ApiClient {
     return await this.request({ endpoint: `auth/login`, method: `POST`, data: credentials })
   }
 
+  async createGiving(giving){
+    return await this.request({ endpoint:`give`, method: `POST`, data: giving })
+  }
+
   async logoutUser() {
     this.setToken(null)
     localStorage.setItem("beauty_token", "")

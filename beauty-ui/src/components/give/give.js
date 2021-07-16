@@ -17,11 +17,21 @@ import {  purple, grey }  from "@material-ui/core/colors";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import apiClient from "../../services/apiClient";
 // import { WithStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
+  },
+  image: {
+    backgroundImage: 'url(https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    margin: theme.spacing(0, "auto"),
   },
   paper: {
     margin: theme.spacing(1, 4),
@@ -32,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    margin: theme.spacing(0, "auto"),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -129,29 +140,45 @@ export default function Give({ user,setUser }){
       setIsProcessing(true)
       setErrors((e) => ({ ...e, form: null }))
 
-      try {
-          const res = await axios.post("http://localhost:3001/give/", {
+      const{ data, error } = await apiClient.createGiving({
             product_type: form.product_type,
             quantity: form.quantity,
             is_used: form.is_used,
             zip_code: form.zip_code,
-            product_pic: form.product_pic,
-          })
-          if (res?.data?.user) {
-            setUser(res.data.user)
-          } else {
-            setErrors((e) => ({ ...e, form: "Something went wrong with the giving submission" }))
-          }
-        } catch (err) {
-          console.log(err)
-          const message = err?.response?.data?.error?.message
-          setErrors((e) => ({ ...e, form: message ?? String(err) }))
-        } finally {
-          setIsProcessing(false)
-        }
+            product_pic: form.product_pic
+      })
+      if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
+    //?.user
+      if(data){
+        setUser(data.user)
+        apiClient.setToken(data.token)
+      }
+      setIsProcessing(false)
+
+    //   try {
+    //       const res = await axios.post("http://localhost:3001/give/", {
+    //         product_type: form.product_type,
+    //         quantity: form.quantity,
+    //         is_used: form.is_used,
+    //         zip_code: form.zip_code,
+    //         product_pic: form.product_pic,
+    //       })
+    //       if (res?.data?.user) {
+    //         setUser(res.data.user)
+    //       } else {
+    //         setErrors((e) => ({ ...e, form: "Something went wrong with the giving submission" }))
+    //       }
+    //     } catch (err) {
+    //       console.log(err)
+    //       const message = err?.response?.data?.error?.message
+    //       setErrors((e) => ({ ...e, form: message ?? String(err) }))
+    //     } finally {
+    //       setIsProcessing(false)
+    //     }
       
-      console.log(form)
-    }
+    //   console.log(form)
+      
+     }
     
       
     
@@ -174,10 +201,11 @@ export default function Give({ user,setUser }){
                 </p>
             </div>
             
-            <Grid container className="feedArea" spacing={2}>
-              
-              <Grid item xs={7} sm={7} md={6} >
-                <img className="givePicture" src = "https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup"></img>
+            <Grid container  spacing={2} className="feedArea">
+            {/* className="feedArea" */}
+              <Grid item xs={6} sm={6} md={6} className={classes.image}>
+                {/* <img className="givePicture"  src = "https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup"></img> */}
+
               </Grid>
 
               <Grid item xs={4} sm={3} md={4} className="giveForm" component={Paper} elevation={0}>

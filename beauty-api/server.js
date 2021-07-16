@@ -21,13 +21,13 @@ app.use(morgan("tiny"))
 //   credentials:true,
 //   origin: ['http://localhost:PORT']
 // }));
-
+app.use(security.extractUserFromJwt)
 //Sofia - Login and Register
 app.use("/auth", authRoutes)
 //Obehi - Give Page
 app.use("/give", giveRoutes)
 //attach credentials to res.locals.user
-app.use(security.extractUserFromJwt)
+
 
 app.get("/", async (req, res, next) => {
   res.status(200).json({ ping: "pong" })

@@ -13,6 +13,7 @@ class Giving{
               throw new BadRequestError(`Missing required field - ${field} - in request body.`)
             }
           })
+          console.log(user)
 
           const results= await db.query(
             // Obehi: 
@@ -21,7 +22,7 @@ class Giving{
            
             `
             INSERT INTO give(product_type, quantity, is_used, zip_code, product_pic, user_id)
-            VALUES($1, $2, $3, $4, $5, (SELECT id FROM users WHERE email = $6) )
+            VALUES($1, $2, $3, $4, $5, (SELECT id FROM users WHERE username = $6) )
             RETURNING id,
                       product_type,
                       quantity,
@@ -30,7 +31,7 @@ class Giving{
                       product_pic,
                       user_id;
             `, 
-            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.zip_code, newGiving.product_pic, newGiving.email]
+            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.zip_code, newGiving.product_pic, user.username]
             )
         
             return results.rows[0]
