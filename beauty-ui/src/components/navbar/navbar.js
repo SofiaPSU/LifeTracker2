@@ -29,12 +29,12 @@ export default function Navbar(){
                             Tips
                         </a>
                     </li>
-                    <Button className="login" variant="contained" color="primary">
+                    <Button className="login" variant="contained" color="default">
                         <a href="/login">
                             Log In
                         </a>
                     </Button>
-                    <Button className="register" variant="contained" color="primary">
+                    <Button className="register" variant="contained" color="default">
                         <a href="/register">
                             Register
                         </a>
