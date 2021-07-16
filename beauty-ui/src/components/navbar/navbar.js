@@ -41,13 +41,12 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                     </li>
                     {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
                             Logout
-                    </Button>):(<><Button className="login" variant="contained" color="primary">
+                    </Button>):(<><Button className="login" variant="contained">
                         <Link to="/login">
                             Log In
                             </Link>
                     </Button>
-
-                    <Button className="register" variant="contained" color="primary">
+                    <Button className="register" variant="contained">
                         <Link to="/register">
                             Register
                          </Link>
