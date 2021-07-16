@@ -6,48 +6,19 @@ import Button from "@material-ui/core/Button"
 
 import { Box, Container, Typography, Grid, makeStyles} from "@material-ui/core"
 
-// const useStyles = makeStyles((theme) => ({
-//     wrapper: {
-//         width: '100vw',
-//         background: 
-//         backgroundRepeat: 'no-repeat',
-//         backgroundSize: 'cover',
-//       },
-//       title: {
-//         fontFamily: "Euclid Circular A",
-//         fontStyle: "normal",
-//         fontWeight: "bold",
-//         fontSize: 85,
-//         letterSpacing: "-0.015em",
-//         color: "#8F5338",
-//       },
-// })
-
-
-
-
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
 
-export default function Navbar({user, isAuthenticated, logoutUser}){
-    const navigate = useNavigate()
-
-    const handleOnLogout = async () =>{
-        await logoutUser(
-            navigate("/")
-        )
-    }
+export default function Navbar(){
     return (
-
-      //  <div>
          <Container style={{ backgroundColor: '#FFFFFF', height: '10vh'}}>
             <nav>
-                <ul>
+                <ul className="navbar-titles">
                     <li>
                        <Link className="navbar-titles" to="/">
                             Hīrā
-                            </Link>
+                        </Link>
                     </li>
                     <li>
                         <Link className="navbar-titles" to="/">
@@ -64,24 +35,19 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                             Tips
                         </Link>
                     </li>
-        
-                    {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
-                            Logout
-                    </Button>):(<><Button className="login" variant="contained" color="primary">
-                        <Link to="/login">
-                            Log In
-                            </Link>
+                    <Button className="login" variant="contained">
+                             <Link className="navbar-titles" to="/">
+                                 Log In
+                             </Link>
+                         </Button>
+                         <Button className="register" variant="contained">
+                             <Link className="navbar-titles" to="/">
+                                 Register
+                             </Link>
                     </Button>
-
-                    <Button className="register" variant="contained" color="primary">
-                        <Link to="/register">
-                            Register
-                         </Link>
-                    </Button></>)}
-                   
+        
                 </ul>
             </nav>
            </Container>
-        //</div>
     )
 }
