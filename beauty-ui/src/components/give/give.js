@@ -12,8 +12,12 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import  Grid  from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
-
+import Switch from '@material-ui/core/Switch';
+import {  purple, grey }  from "@material-ui/core/colors";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+// import { WithStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,10 +39,52 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+const AntSwitch = withStyles((theme) => ({
+  root: {
+    width: 34,
+    height: 17,
+    padding: 0,
+    display: 'flex',
+  },
+  switchBase: {
+    padding: 4,
+    color: theme.palette.grey[500],
+    '&$checked': {
+      transform: 'translateX(12px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        opacity: 1,
+        backgroundColor: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
+      },
+    },
+  },
+  thumb: {
+    width: 11,
+    height: 12,
+    boxShadow: 'none',
+    color: theme.palette.common.black
+  },
+  track: {
+    border: `2px solid ${theme.palette.grey[500]}`,
+    borderRadius: 20 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.common.white,
+  },
+  checked: {},
+}))(Switch);
+
+
 export default function Give({ user,setUser }){
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
+    const [toggle,setToggle]=useState(false)
+    // const [state, setState] = useState({
+    //   checkedC: false
+      
+    // });
+
     const [form, setForm] = useState({
         product_type:"",
         quantity:"",
@@ -46,52 +92,74 @@ export default function Give({ user,setUser }){
         zip_code:"",
         product_pic:"",
       })
-      const handleOnInputChange = (event) => {
-        // if (event.target.name === "email") {
-        //   if (event.target.value.indexOf("@") === -1) {
-        //     setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
-        //   } else {
-        //     setErrors((e) => ({ ...e, email: null }))
-        //   }
-        // }
-        //  //Also something extra doesnt allow registration to go through and gives an error if passwords dont match in the "password" input and the "confirm password" input
-        // if (event.target.name === "passwordConfirm") {
-        //   if (event.target.value !== form.password) {
-        //     setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }))
-        //   } else {
-        //     setErrors((e) => ({ ...e, passwordConfirm: null }))
-        //   }
-        // }
-    
-        setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-      }
-      const handleOnSubmit = async () => {
-        setIsProcessing(true)
-        setErrors((e) => ({ ...e, form: null }))
 
-        try {
-            const res = await axios.post("http://localhost:3001/give/", {
-              product_type: form.product_type,
-              quantity: form.quantity,
-              is_used: form.is_used,
-              zip_code: form.zip_code,
-              product_pic: form.product_pic,
-            })
-            if (res?.data?.user) {
-              setUser(res.data.user)
-            } else {
-              setErrors((e) => ({ ...e, form: "Something went wrong with the giving submission" }))
-            }
-          } catch (err) {
-            console.log(err)
-            const message = err?.response?.data?.error?.message
-            setErrors((e) => ({ ...e, form: message ?? String(err) }))
-          } finally {
-            setIsProcessing(false)
-          }
+      useEffect(() => {
+        // if user is already logged in,
+        // redirect them to the detailed activity page aka an authenticated view
+        if (user?.email) {
+          navigate("/give")
+        }
+        else{
+          
+          // navigate("/give/giveUnauthorized")
+        }
+      }, [user, navigate])
+
+    const handleOnInputChange = (event) => {
+        
+        setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+       
+       
     }
-    const classes = useStyles();
+     
+    const toggler = () => {
+      toggle ? setToggle(false): setToggle(true)
+     
+    }
+
     
+    const handleChange = (event) => {
+      // setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+      setForm((f) => ({ ...f, [event.target.name]: event.target.checked }))
+
+      // setState({ ...state, [event.target.name]: event.target.checked });
+    };
+
+    const handleOnSubmit = async () => {
+      setIsProcessing(true)
+      setErrors((e) => ({ ...e, form: null }))
+
+      try {
+          const res = await axios.post("http://localhost:3001/give/", {
+            product_type: form.product_type,
+            quantity: form.quantity,
+            is_used: form.is_used,
+            zip_code: form.zip_code,
+            product_pic: form.product_pic,
+          })
+          if (res?.data?.user) {
+            setUser(res.data.user)
+          } else {
+            setErrors((e) => ({ ...e, form: "Something went wrong with the giving submission" }))
+          }
+        } catch (err) {
+          console.log(err)
+          const message = err?.response?.data?.error?.message
+          setErrors((e) => ({ ...e, form: message ?? String(err) }))
+        } finally {
+          setIsProcessing(false)
+        }
+      
+      console.log(form)
+    }
+    
+      
+    
+    
+    
+      
+    const classes = useStyles();
+  
     
     return(
       <div className="Give">
@@ -117,7 +185,7 @@ export default function Give({ user,setUser }){
           <Typography component="h3" variant="h3" fontFamily="Arima Madurai">
             Give
           </Typography>
-          {/* <h2>Give</h2> */}
+          
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -171,34 +239,42 @@ export default function Give({ user,setUser }){
               value={form.zip_code}
               onChange={handleOnInputChange}
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="is_used"
-              label="Used"
-              type="isUsed"
-              id="isUsed"
-              autoComplete="is-used"
-              value={form.is_used}
-              onChange={handleOnInputChange}
-            />
 
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+            <FormControl>
+              
+                <Grid container component="label"  alignItems="center" spacing={1}>
+                  <Grid item>No</Grid>
+                  <Grid item>
+                    <FormControlLabel
+                    // name="top"
+                  // value={form.is_used}
+                    control={<AntSwitch  onChange={handleChange} name="is_used" onClick={toggler} value={form.is_used}/> }
+                    //value={form.is_used}
+                    //name="checkedC"
+                    
+                    label="Used"
+                    labelPlacement="top"
+                    /> 
+                    {/* {toggle ? <span>True</span> : <span>False</span>} */}
+                  </Grid>
+                  <Grid item >Yes</Grid>
+                </Grid>
+              {/* </Typography> */}
+            </FormControl>    
+      
             <Button
               type="submit"
-              fullWidth
+             fullWidth
+            
               variant="contained"
-              // color="primary"
+              color="default"
               className={classes.submit}
               disabled={isProcessing} 
               onClick={handleOnSubmit}
+              
             >
-              Submit
+              {isProcessing ? "Loading..." : "Submit"}
+              {/* Submit */}
             </Button>
             <Grid container>
             </Grid>
@@ -217,35 +293,7 @@ export default function Give({ user,setUser }){
         </Container>
       </div>
       
-          
-        
-      // </React.Fragment>
-      
-
-
-
-
-
-
-        // <div className="Give">
-        //     <div className="card">
-        //       <div className="giveTitle">
-        //          <h2>GIVE</h2>
-        //       </div>
-        //       <div className="giveDescription">
-        //         <p>
-        //             Empty, gently used, or never opened,  Hīrā will find the mose sustainable and eco-friendly way 
-        //             to get rid of your unwanted products. 
-        //         </p>
-        //       </div>
-
-
-        //     </div>
-        // </div>
-
     );
-
-
 
 
 }

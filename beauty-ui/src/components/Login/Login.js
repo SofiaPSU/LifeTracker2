@@ -13,16 +13,19 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import "./Login.css"
+import { useLoginForm } from "../../hooks/useLoginForm"
+
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <div className="text" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
       Hīrā
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
-    </Typography>
+    </div>
   );
 }
 
@@ -48,28 +51,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const {form, errors, isProcessing, handleOnChange, handleOnSubmit, showPasswordBox, hide} = useLoginForm()
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" style={{fontFamily:'Arima Madurai'}}>
+        <div ><h1 className="text">
           Login
-        </Typography>
+          </h1>
+        </div>
+        {errors?.form && <span className="error">{errors.form}</span>}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
+              <TextField className="text"
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={<span className="text">Email Address</span> }
                 name="email"
                 autoComplete="email"
+                value={form.email}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -78,16 +83,18 @@ export default function Login() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
-                type="password"
+                label={<span className="text">Password</span> }
+                type={hide ? "password" : "text" }
                 id="password"
                 autoComplete="current-password"
+                value={form.password}
+                onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="showPassword" color="primary" />}
-                label="Show Password"
+              <FormControlLabel onClick={showPasswordBox} id="text"
+                control={<Checkbox value="showPassword" color="primary"/>}
+                label={<span className="text">Show Password</span> }
               />
             </Grid>
           </Grid>
@@ -97,15 +104,17 @@ export default function Login() {
             color="primary"
             variant="contained"
             className={classes.submit}
+            onClick={handleOnSubmit}
+            disabled={isProcessing}
           >
-             <Typography component="h1" variant="button" style={{fontFamily:'Arima Madurai'}}>
+             <div component="h1" variant="button" className="text">
             Login
-            </Typography>
+            </div>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/register" variant="body2">
-                Don't have an account? Register
+              <Link href="/register" variant="body2" >
+                <div className="text">Don't have an account? Register</div>
               </Link>
             </Grid>
           </Grid>

@@ -43,7 +43,7 @@ class User{
     static async register(credentials){
         //user submits email and password
         //if fields missing throw an error
-        const requiredFields = ["email","username","zip_code","first_name","last_name", "age", "password", "profile_pic"]
+        const requiredFields = ["email","username","zip_code","first_name","last_name", "age", "password"]
         requiredFields.forEach(field =>{
             if(!credentials.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} in request body`)
@@ -61,13 +61,14 @@ class User{
         //take users email and lowercase it
         const lowercasedEmail = credentials.email.toLowerCase()
         const hashedPw = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
+        const normalizedUsername = credentials.username.toLowerCase()
         // create a new user in db with their info
         const result = await db.query(
            ` INSERT INTO users (
-                email, username, zip_code, first_name, last_name, age, password, profile_pic
-            )VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-            RETURNING id, email, is_admin;`, [lowercasedEmail, credentials.username, credentials.zip_code,
-            credentials.first_name, credentials.last_name, credentials.age, hashedPw, credentials.profile_pic])
+                email, username, zip_code, first_name, last_name, age, password
+            )VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING id, email, username, zip_code, first_name, last_name, age, password, is_admin;`, [lowercasedEmail, normalizedUsername, credentials.zip_code,
+            credentials.first_name, credentials.last_name, credentials.age, hashedPw])
         //return user
         const user = result.rows[0]
         return User.makePublicUser(user)

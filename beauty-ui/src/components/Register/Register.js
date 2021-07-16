@@ -14,17 +14,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useRegistrationForm } from "../../hooks/useRegistrationForm"
-
+import "../Login/Login.css"
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <div variant="body2" color="textSecondary" align="center" className="text">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
       Hīrā
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
-    </Typography>
+    </div>
   );
 }
 
@@ -49,19 +49,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export default function Register() {
-  const {form, errors, isProcessing, handleOnChange, handleOnSubmit} = useRegistrationForm()
+  const {form, errors, isProcessing, handleOnChange, handleOnSubmit, showPasswordBox, hide} = useRegistrationForm()
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h4">
+        <h1 className="text">
           Register
-        </Typography>
+        </h1>
+        {errors?.form && <span className="error">{errors.form}</span>}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -72,7 +71,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={<span className="text">First Name</span> }
                 autoFocus
                 value={form.first_name}
                 onChange={handleOnChange}
@@ -84,7 +83,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={<span className="text">Last Name</span> }
                 name="last_name"
                 autoComplete="lname"
                 value={form.last_name}
@@ -100,8 +99,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="age"
-                label="Age"
-                autoFocus
+                label={<span className="text">Age</span> }
                 value={form.age}
                 onChange={handleOnChange}
               />
@@ -112,10 +110,9 @@ export default function Register() {
                 required
                 fullWidth
                 id="zipCode"
-                label="Zip Code"
+                label={<span className="text">Zip Code</span> }
                 name="zip_code"
                 autoComplete="zip"
-                autoFocus
                 value={form.zip_code}
                 onChange={handleOnChange}
               />
@@ -126,7 +123,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="username"
-                label="Username"
+                label={<span className="text">Username</span> }
                 name="username"
                 autoComplete="username"
                 value={form.username}
@@ -139,7 +136,7 @@ export default function Register() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={<span className="text">Email Address</span> }
                 name="email"
                 autoComplete="email"
                 value={form.email}
@@ -152,8 +149,8 @@ export default function Register() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
-                type="password"
+                label={<span className="text">Password</span> }
+                type={hide ? "password": "text"}
                 id="password"
                 autoComplete="current-password"
                 value={form.password}
@@ -161,9 +158,9 @@ export default function Register() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
+              <FormControlLabel onClick={showPasswordBox}
                 control={<Checkbox value="showPassword" color="primary" />}
-                label="Show Password"
+                label={<span className="text">Show Password</span> }
               />
             </Grid>
           </Grid>
@@ -173,14 +170,18 @@ export default function Register() {
             color="primary"
             variant="contained"
             className={classes.submit}
+           disabled={isProcessing}
             onClick={handleOnSubmit}
+            
           >
+            <div component="h1" variant="button" className="text">
             Register
+            </div>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Login
+              <Link href="/login" variant="body2" >
+               <div className="text"> Already have an account? Login</div>
               </Link>
             </Grid>
           </Grid>
