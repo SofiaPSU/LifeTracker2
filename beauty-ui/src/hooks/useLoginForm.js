@@ -12,15 +12,19 @@ export const useLoginForm = ()=>{
       email: "",
       password: "",
     })
-  
+    const [hide, show]= useState(true)
+
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
-      if (user?.username) {
+      if (user?.email) {
         navigate("/")
       }
     }, [user, navigate])
-  
+    
+    const showPasswordBox = () =>{
+      show(hide ? false : true)
+}
     const handleOnChange = (event) => {
       if (event.target.name === "email") {
         if (event.target.value.indexOf("@") === -1) {
@@ -32,7 +36,8 @@ export const useLoginForm = ()=>{
   
       setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
-  
+
+
     const handleOnSubmit = async () => {
       setIsProcessing(true)
   
@@ -47,5 +52,5 @@ export const useLoginForm = ()=>{
       setIsProcessing(false)
     }
 
-    return { handleOnSubmit, handleOnChange, isProcessing, errors, form}
+    return { handleOnSubmit, handleOnChange, isProcessing, errors, form, showPasswordBox, hide}
 }
