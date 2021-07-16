@@ -3,7 +3,7 @@ Includes code files for capstone project
 
 homepage ~ Kelsey
 
-loggin / register ~ Sofia
+login / register ~ Sofia
 
 ✅database SQL - Obehi 
 
