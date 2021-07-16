@@ -97,12 +97,12 @@ export default function Give({ user,setUser }){
         // if user is already logged in,
         // redirect them to the detailed activity page aka an authenticated view
         if (user?.email) {
-          navigate("/give")
+          navigate("/give/")
         }
-        else{
+        // else if(!user?.email){
           
-          // navigate("/give/giveUnauthorized")
-        }
+        //   // navigate("/give/giveUnauthorized")
+        // }
       }, [user, navigate])
 
     const handleOnInputChange = (event) => {
