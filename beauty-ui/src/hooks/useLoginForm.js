@@ -17,6 +17,7 @@ export const useLoginForm = ()=>{
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
+      console.log(user)
       if (user?.email) {
         navigate("/")
       }
@@ -38,9 +39,10 @@ export const useLoginForm = ()=>{
     }
 
 
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = async (event) => {
+      event.preventDefault()
       setIsProcessing(true)
-  
+      
       const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
       if (error) setErrors((e) => ({ ...e, form: error }))
       if (data) {

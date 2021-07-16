@@ -61,12 +61,13 @@ class User{
         //take users email and lowercase it
         const lowercasedEmail = credentials.email.toLowerCase()
         const hashedPw = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
+        const normalizedUsername = credentials.username.toLowerCase()
         // create a new user in db with their info
         const result = await db.query(
            ` INSERT INTO users (
                 email, username, zip_code, first_name, last_name, age, password
             )VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING id, email, username, zip_code, first_name, last_name, age, password, is_admin;`, [lowercasedEmail, credentials.username, credentials.zip_code,
+            RETURNING id, email, username, zip_code, first_name, last_name, age, password, is_admin;`, [lowercasedEmail, normalizedUsername, credentials.zip_code,
             credentials.first_name, credentials.last_name, credentials.age, hashedPw])
         //return user
         const user = result.rows[0]
