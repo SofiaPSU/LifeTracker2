@@ -43,6 +43,10 @@
     
     }
 
+    .giveDescription{
+        padding-bottom: 10%;
+    }
+
     .feedPlace{
         justify-content: center;
     }

@@ -26,6 +26,7 @@ app.use("/auth", authRoutes)
 app.use("/give", giveRoutes)
 
 
+
 app.get("/", async (req, res, next) => {
   res.status(200).json({ ping: "pong" })
 })
