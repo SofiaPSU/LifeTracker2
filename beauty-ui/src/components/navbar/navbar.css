@@ -46,3 +46,20 @@ Button{
     box-sizing: border-box;
 
 }
+
+.login{
+    font-family: 'Arima Madurai', cursive ;
+    font-size: 27px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+
+}
+.register{
+    font-family: 'Arima Madurai', cursive ;
+    font-size: 27px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+
+}

@@ -4,3 +4,8 @@
     font-family : 'Arima Madurai', cursive ;
     font-weight: bold;
 }
+
+.Box{
+    margin: 0 auto;
+    line-height: normal;
+}

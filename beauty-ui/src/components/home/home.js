@@ -2,8 +2,15 @@ import './home.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles, Grid } from "@material-ui/core"
+import { Box, Typography, makeStyles, Grid, FormHelperText } from "@material-ui/core"
 import Container from '@material-ui/core/Container';
+
+//for grids
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import Paper from '@material-ui/core/Paper';
 
 
 
@@ -18,10 +25,22 @@ var perfume= <img src="https://images.unsplash.com/photo-1622618991746-fe6004db3
 
 //useStyles is like CSS in js
 const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+      },
+      paper: {
+        height: 540,
+        width: 400,
+        // background: `url(https://images.unsplash.com/photo-1600180583258-6d9b0c7b782b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnVtc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60`, //grids that contain the images
+        background: "#000000",
+    
+    
+      },
 wrapper: {
-    height: '100vh',
+    height: '100vw',
     width: '100vw',
-    background: `url(https://images.unsplash.com/photo-1598412795976-9c195182ee01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2134&q=80)`,
+    margin: "auto",
+    background: `url(https://images.unsplash.com/photo-1598412795976-9c195182ee01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1004&q=100)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
@@ -30,14 +49,18 @@ wrapper: {
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 85,
+    
+    margin: "auto",
     letterSpacing: "-0.015em",
     color: "#8F5338",
+
+    
   },
   subtitle: {
     width: "50%",
     marginLeft: "auto",
     marginRight: "auto",
-
+    padding: 60,
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -65,9 +88,9 @@ wrapper: {
 
   bottom: {
 
+    display: "Flex",
     width: '100vw',
-    marginLeft: "auto",
-    marginRight: "auto",
+    padding: 60,
 
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
@@ -75,7 +98,7 @@ wrapper: {
     fontSize: 25,
     textAlign: "center",
     letterSpacing: "-0.015em",
-    color: "#000000",
+    color: "#FFFFFF",
     background: "#5C625E",
 
   },
@@ -113,17 +136,62 @@ export default function Home() {
             <Button variant="contained" color="default" className={classes.registerBTN}>
                 Register
             </Button>
+           
         </Box>
-        <Container className={classes.bottom}>
-        We accept most skincare and makeup products for donations and recycling. We priotize  the products that most people use as part of their daily routine. Whether they come in paper, plastic, or glass, we will gladly accept them. Here are some of examples of what we accept....
-        </Container>
-        <Container className={classes.skincare}>
+        <Typography className={classes.bottom}>
+                We accept most skincare and makeup products for donations and recycling. We priotize  the products that most people use as part of their daily routine. Whether they come in paper, plastic, or glass, we will gladly accept them. Here are some of examples of what we accept....
+        </Typography >
+        <Container className={classes.skincare} justifyContent="left">
             Skincare
         </Container>
-        <Grid className="skincare-examples">
+        <Grid className="skincare-examples" justifyContent="left">
+                <Grid container className={classes.root} spacing={2}>
+            <Grid item xs={12}>
+                <Grid container justifyContent="left" spacing={spacing}>
+                {[0, 1, 2].map((value) => (
+                    <Grid key={value} item>
+                    <Paper className={classes.paper} />
+                    </Grid>
+                ))}
+                </Grid>
+            </Grid>
+            <Grid item xs={12}>
+                <Paper className={classes.control}>
+                <Grid container>
+                    <Grid item>
+                    <FormLabel>skincare pictures</FormLabel>
+
+                    </Grid>
+                </Grid>
+                </Paper>
+            </Grid>
+            </Grid>
 
         </Grid>
+        <Grid className="makeup-examples">
+        <Grid container className={classes.root} spacing={2}>
+            <Grid item>
+                <Grid container justifyContent="left" spacing={spacing} >
+                {[0, 1, 2, 4].map((value) => (
+                    <Grid key={value} item>
+                    <Paper className={classes.paper} />
+                    </Grid>
+                ))}
+                </Grid>
+            </Grid>
+            <Grid item>
+                <Paper className={classes.control}>
+                <Grid container>
+                    <Grid item>
+                    <FormLabel>makeup pictures</FormLabel>
+                    </Grid>
+                </Grid>
+                </Paper>
+            </Grid>
+            </Grid>
+
+        </Grid>
+        
       </div>
   );
 }
-
