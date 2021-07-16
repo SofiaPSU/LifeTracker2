@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const AntSwitch = withStyles((theme) => ({
   root: {
     width: 34,
@@ -78,10 +79,11 @@ export default function Give({ user,setUser }){
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
-    const [state, setState] = useState({
-      checkedC: false
+    const [toggle,setToggle]=useState(false)
+    // const [state, setState] = useState({
+    //   checkedC: false
       
-    });
+    // });
 
     const [form, setForm] = useState({
         product_type:"",
@@ -95,19 +97,33 @@ export default function Give({ user,setUser }){
         // if user is already logged in,
         // redirect them to the detailed activity page aka an authenticated view
         if (user?.email) {
-          navigate("/")
+          navigate("/give")
+        }
+        else{
+          
+          // navigate("/give/giveUnauthorized")
         }
       }, [user, navigate])
 
     const handleOnInputChange = (event) => {
         
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-        setState({ ...state, [event.target.name]: event.target.checked });
+       
+       
     }
      
-    // const handleChange = (event) => {
-    //   setState({ ...state, [event.target.name]: event.target.checked });
-    // };
+    const toggler = () => {
+      toggle ? setToggle(false): setToggle(true)
+     
+    }
+
+    
+    const handleChange = (event) => {
+      // setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+      setForm((f) => ({ ...f, [event.target.name]: event.target.checked }))
+
+      // setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
     const handleOnSubmit = async () => {
       setIsProcessing(true)
@@ -134,7 +150,7 @@ export default function Give({ user,setUser }){
           setIsProcessing(false)
         }
       
-      
+      console.log(form)
     }
     
       
@@ -227,17 +243,21 @@ export default function Give({ user,setUser }){
             <FormControl>
               
                 <Grid container component="label"  alignItems="center" spacing={1}>
-                  <Grid item>Yes</Grid>
+                  <Grid item>No</Grid>
                   <Grid item>
                     <FormControlLabel
                     // name="top"
-                    value={form.is_used}
-                    control={<AntSwitch checked={state.checkedC} onChange={handleOnInputChange} name="checkedC" />}
+                  // value={form.is_used}
+                    control={<AntSwitch  onChange={handleChange} name="is_used" onClick={toggler} value={form.is_used}/> }
+                    //value={form.is_used}
+                    //name="checkedC"
+                    
                     label="Used"
                     labelPlacement="top"
                     /> 
+                    {/* {toggle ? <span>True</span> : <span>False</span>} */}
                   </Grid>
-                  <Grid item>No</Grid>
+                  <Grid item >Yes</Grid>
                 </Grid>
               {/* </Typography> */}
             </FormControl>    
