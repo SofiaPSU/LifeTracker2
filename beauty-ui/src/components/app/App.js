@@ -5,7 +5,7 @@ import Home from '../home/home';
 import Navbar from '../navbar/navbar';
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-import GiveSucess from "../give/giveSuccess";
+import GiveSuccess from "../give/giveSuccess";
 import GiveUnauthorized from "../give/giveUnauthorized";
 import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
@@ -57,8 +57,8 @@ const App = ()=> {
             <BrowserRouter>
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
-                    <Route path="/give" element={ <Give /> }/>
-                    <Route path="/give/giveSucess" element={ <GiveSucess /> }/>
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} /> }/>
+                    <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>

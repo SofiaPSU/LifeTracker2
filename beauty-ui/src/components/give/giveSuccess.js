@@ -1,6 +1,6 @@
 
 
-export default function GiveSucess(){
+export default function GiveSuccess(){
 
 return(
     <div className="giveSuccess">

@@ -110,10 +110,10 @@ export default function Give({ user,setUser }){
         if (user?.email) {
           navigate("/give/")
         }
-        // else if(!user?.email){
+        else if(!user?.email){
           
-        //   // navigate("/give/giveUnauthorized")
-        // }
+          navigate("/give/giveUnauthorized")
+        }
       }, [user, navigate])
 
     const handleOnInputChange = (event) => {
@@ -177,7 +177,8 @@ export default function Give({ user,setUser }){
     //     }
       
     //   console.log(form)
-      
+    navigate("/give/giveSuccess")
+      console.log(form)
      }
     
       
