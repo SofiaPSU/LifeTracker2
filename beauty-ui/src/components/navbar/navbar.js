@@ -1,7 +1,7 @@
 import './navbar.css';
 import React from 'react';
-import {Link, Navigate} from 'react-router-dom';  
-import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';  
+//import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
 
 import { Box, Container, Typography, Grid, makeStyles} from "@material-ui/core"
@@ -15,6 +15,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
         await logoutUser()
         navigate("/")
     }
+    console.log(user)
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '10vh'}}>
             <nav>
@@ -39,15 +40,14 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                             Tips
                         </Link>
                     </li>
-                    {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
+                    {user?.id? ( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
                             Logout
-                    </Button>):(<><Button className="login" variant="contained" color="primary">
+                    </Button>):(<><Button className="login" variant="contained">
                         <Link to="/login">
                             Log In
                             </Link>
                     </Button>
-
-                    <Button className="register" variant="contained" color="primary">
+                    <Button className="register" variant="contained">
                         <Link to="/register">
                             Register
                          </Link>

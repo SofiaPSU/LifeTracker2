@@ -4,6 +4,7 @@ class ApiClient {
   constructor(remoteHostUrl) {
     this.remoteHostUrl = remoteHostUrl
     this.token = null
+    this.tokenName ="beauty_token"
   }
 
   setToken(token) {
@@ -49,8 +50,9 @@ class ApiClient {
   }
 
   async logoutUser() {
+    console.log("user is logged out")
     this.setToken(null)
-    localStorage.setItem("beauty_token", "")
+    localStorage.setItem(this.tokenName,"")
   }
 }
 
