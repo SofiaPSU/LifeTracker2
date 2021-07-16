@@ -1,16 +1,20 @@
 import './navbar.css';
 import React from 'react';
-import {Link} from 'react-router-dom';  
+import {Link, Navigate} from 'react-router-dom';  
 import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
 
 import { Box, Container, Typography, Grid, makeStyles} from "@material-ui/core"
-
-
 import { useNavigate } from 'react-router';
 
+export default function Navbar({user, isAuthenticated, logoutUser}){
+    
+    const navigate = useNavigate()
 
-export default function Navbar(){
+    const handleOnLogout = async ()=>{
+        await logoutUser()
+        navigate("/")
+    }
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '10vh'}}>
             <nav>
@@ -35,16 +39,19 @@ export default function Navbar(){
                             Tips
                         </Link>
                     </li>
-                    <Button className="login" variant="contained">
-                             <Link className="navbar-titles" to="/">
-                                 Log In
-                             </Link>
-                         </Button>
-                         <Button className="register" variant="contained">
-                             <Link className="navbar-titles" to="/">
-                                 Register
-                             </Link>
+                    {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
+                            Logout
+                    </Button>):(<><Button className="login" variant="contained" color="primary">
+                        <Link to="/login">
+                            Log In
+                            </Link>
                     </Button>
+
+                    <Button className="register" variant="contained" color="primary">
+                        <Link to="/register">
+                            Register
+                         </Link>
+                    </Button></>)}
         
                 </ul>
             </nav>
