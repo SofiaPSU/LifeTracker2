@@ -10,6 +10,7 @@ router.post("/login", async (req, res, next)=>{
         const user = await User.login(req.body)
         const token = tokens.createUserJwt(user)
         return res.status(200).json({user, token})
+    
     } catch (err) {
         next(err)
     }
@@ -27,14 +28,16 @@ router.post("/register", async (req,res, next)=>{
     }
 })
 
-router.get("/me", security.requireAuthenticatedUser, async (req, res, next)=>{
+router.get("/me",  async (req, res, next)=>{
+    console.log("local=", res.locals)
     try {
-        const {username} = res.locals.username
-        const user = await User.fetchUserByUsername(username)
-        const publicUser = User.makePublicUser(user)
+        const {user} = res.locals
+        const username = await User.fetchUserByUsername(user)
+        console.log(username)
+        const publicUser = User.makePublicUser(username)
         return res.status(200).json({ user: publicUser})
-        
     } catch (err) {
+        console.log(err)
         next(err)
     }
 })
