@@ -17,17 +17,14 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(morgan("tiny"))
-// app.use(cors({
-//   credentials:true,
-//   origin: ['http://localhost:PORT']
-// }));
 
+//attach credentials to res.locals.user
+app.use(security.extractUserFromJwt)
 //Sofia - Login and Register
 app.use("/auth", authRoutes)
 //Obehi - Give Page
 app.use("/give", giveRoutes)
-//attach credentials to res.locals.user
-app.use(security.extractUserFromJwt)
+
 
 app.get("/", async (req, res, next) => {
   res.status(200).json({ ping: "pong" })

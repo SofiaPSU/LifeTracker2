@@ -180,7 +180,7 @@ export default function Register() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2" >
+              <Link to="/login" variant="body2" >
                <div className="text"> Already have an account? Login</div>
               </Link>
             </Grid>
