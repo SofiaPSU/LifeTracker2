@@ -7,7 +7,7 @@ import "./giveUnauthorized.css"
 export default function GiveUnauthorized(){
     return(
         <div className="giveUnauthorized">
-            <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
+            <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }} justify-content="center">
                 <div className="giveTitle">
                         <h2>GIVE</h2>
                 </div>
@@ -19,13 +19,14 @@ export default function GiveUnauthorized(){
                 </div>
                 {/* spacing={2} */}
                 <Grid container className="feedPlace" justify-content="center" >
-                    <Grid item  xs={5}  className="giveWarning"  component={Paper} elevation={0}>
+                    <Grid item  xs={6}  className="giveWarning"  component={Paper} elevation={0}>
                         <p>
                         Sorry! you must be logged in to complete the action
-                        of donating or recycling your beauty product to your nearest center.
+                        of viewing the nearest center to donate or recycle 
+                        your beauty product(s).
                         </p>
 
-                        <Grid container  justify-content= "center" spacing={2}>
+                        <Grid container  justify-content= "center" spacing={2} className="redirectBttns">
                         <Grid item > 
                             <Button className="login" variant="contained" color="default">
                                 <a href="/login">
