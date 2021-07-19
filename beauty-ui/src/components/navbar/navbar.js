@@ -18,7 +18,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
     }
    // console.log(user)
     return (
-         <Container style={{ backgroundColor: '#FFFFFF', height: '10vh'}}>
+         <Container style={{ backgroundColor: '#FFFFFF', height: '5vh'}}>
             <nav>
                 <ul className="navbar-titles">
                     <li>
