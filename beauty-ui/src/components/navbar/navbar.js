@@ -3,9 +3,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';  
 //import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-
-import { Box, Container, Typography, Grid, makeStyles} from "@material-ui/core"
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import { Box, Container, Typography, Grid, makeStyles, Menu, MenuItem} from "@material-ui/core"
 import { useNavigate } from 'react-router';
+import StyledMenu from "../Menu/Menu"
 
 export default function Navbar({user, isAuthenticated, logoutUser}){
     
@@ -40,14 +41,14 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                             Tips
                         </Link>
                     </li>
-                    {user?.id? ( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
-                            Logout
-                    </Button>):(<><Button className="login" variant="contained">
+                    {user?.id? (
+                    <StyledMenu logoutUser={logoutUser}/>
+                    ):(<><Button className="login" variant="contained" size="small">
                         <Link to="/login">
                             Log In
                             </Link>
                     </Button>
-                    <Button className="register" variant="contained">
+                    <Button className="register" variant="contained" size="small">
                         <Link to="/register">
                             Register
                          </Link>

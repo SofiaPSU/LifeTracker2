@@ -6,6 +6,7 @@ const {NotFoundError} = require("./utils/errors")
 const authRoutes = require("./routes/auth")
 const giveRoutes = require("./routes/givings")
 const security = require("./middleware/security")
+const profileRoutes = require("./routes/profile")
 
 //added by Kelsey
 // const homePage = require("./routes/home")
@@ -24,7 +25,8 @@ app.use(security.extractUserFromJwt)
 app.use("/auth", authRoutes)
 //Obehi - Give Page
 app.use("/give", giveRoutes)
-
+//Sofia - Profile page
+app.use("/profile", profileRoutes)
 
 
 app.get("/", async (req, res, next) => {
