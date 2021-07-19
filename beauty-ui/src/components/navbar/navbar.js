@@ -15,7 +15,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
         await logoutUser()
         navigate("/")
     }
-    console.log(user)
+   // console.log(user)
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '10vh'}}>
             <nav>
@@ -36,7 +36,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                         </Link>
                     </li>
                     <li>
-                        <Link className="navbar-titles" to="/">
+                        <Link className="navbar-titles" to="/tips">
                             Tips
                         </Link>
                     </li>
