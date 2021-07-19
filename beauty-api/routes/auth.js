@@ -34,7 +34,6 @@ router.get("/me", security.requireAuthenticatedUser, async (req, res, next)=>{
         
         const userL = await User.fetchUserByUsername(user.username)
         const publicUser = User.makePublicUser(userL)
-        console.log(publicUser)
         return res.status(200).json({ user: publicUser})
     } catch (err) {
         console.log(err)

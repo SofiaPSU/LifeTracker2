@@ -11,6 +11,7 @@ import Tips from "../Tips/tips";
 import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
 import { useEffect } from "react";
+import Profile from "../Profile/Profile";
 
 export default function AppContainer(){
     return (
@@ -26,6 +27,7 @@ const App = ()=> {
     const isAuthenticated = Boolean(initialized && user?.email)
     
     useEffect(() => {
+      document.title="Hīrā"
         const initApp = async () => {
           const { data } = await apiClient.fetchUserFromToken()
           if (data) setUser(data.user)
@@ -65,6 +67,7 @@ const App = ()=> {
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
+                    <Route path="/profile" element={ <Profile user={user}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
