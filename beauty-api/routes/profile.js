@@ -37,4 +37,24 @@ router.get("/profile", security.requireAuthenticatedUser, async (req, res, next)
         next(error)
     }
 } )
+
+//Obehi: This gets the giving entries of the user
+router.get("/profile/donations", security, security.requireAuthenticatedUser, async(req,res,next)=>{
+    const user = res.locals.user
+    
+
+    
+})
+
+
+//Obehi: This gets the recycling entries of the user
+router.get("/profile/recycles", security, security.requireAuthenticatedUser, async(req,res,next)=>{
+    const user = res.locals.user
+
+    
+})
+
+
+
+
 module.exports = router
