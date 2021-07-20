@@ -19,7 +19,7 @@ export const useLoginForm = ()=>{
       // redirect them to the home page
       console.log(user)
       if (user?.email) {
-        navigate("/")
+        navigate("/profile")
       }
     }, [user, navigate])
     

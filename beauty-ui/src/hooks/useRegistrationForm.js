@@ -23,7 +23,7 @@ export const useRegistrationForm=()=>{
       // if user is already logged in,
       // redirect them to the home page
       if (user?.email) {
-        navigate("/")
+        navigate("/profile")
       }
     }, [user, navigate])
   
