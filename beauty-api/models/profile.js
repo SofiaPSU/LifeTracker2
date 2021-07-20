@@ -20,7 +20,7 @@ class Profile{
         if(!email){
             throw new BadRequestError("No email provided")
         }
-        const query =`SELECT first_name, username, age, zip_code  FROM users WHERE email =$1`
+        const query =`SELECT *  FROM users WHERE email =$1`
         const result = await db.query(query, [email.toLowerCase()])
         const user = result.rows[0]
         return user
