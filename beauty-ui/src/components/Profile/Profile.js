@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, green } from '@material-ui/core/colors'
-
+import { Button } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,34 +22,42 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile({user}) {
     const classes = useStyles();
     return (
-        <Container className= "profile">
-            <Box className="welcome">
-                <h1 className="text">Welcome, {user.first_name}!</h1>
-            </Box>
-            <Container>
-            <Box>
-                <div className={classes.root}>
-                    <Avatar src="/broken-image.jpg" />
+        <div className= "profile">
+            <div className="info">
+            <div className="avatar">
+                <Avatar style={{ height: '100px', width: '100px' }} src="/broken-image.jpg"></Avatar>
                 </div>
-          
-                <div className={classes.root}>
+                <div className="user-info">
                 <h2 className="text">{user.username}</h2>
                 <h2 className="text">{user.age}</h2>
                 <h2 className="text">{user.zip_code}</h2>
                 <h2 className="text">{user.email}</h2>
-                <h2 className="text">Settings</h2>
-                <h2 className="text">Log Out</h2>
+                <Button className="text">Settings</Button>
+                <br/><br/>
+                <Button className="text">Log Out</Button>
                 </div>
-            </Box>
-            </Container>
-            <Container>
-            <Box>
+                </div>
+            <div className="welcome">
+                <h1 className="welcome">Welcome, {user.first_name}!</h1>
+            </div>
+                
+               
+            <div className="row">
+            <div className="donations">
+                <Box border={1} borderColor='#2EC486'>
                 <h2 className="text">Products Donated!</h2>
-            </Box>
-            <Box>
+                <Button className="text"><Box className= "box" border={1}>View Products</Box></Button>
+                </Box>
+            </div>
+            <div className="recycled">
+                <Box border={1} borderColor='#2EC486'>
                 <h2 className="text">Products Recycled!</h2>
-            </Box>
-            </Container>
-        </Container>
+                <Button className="text" ><Box className= "box" border={1}>View Products</Box></Button>
+                </Box>
+                </div>
+           
+            </div>
+           
+        </div>
     )
 }
