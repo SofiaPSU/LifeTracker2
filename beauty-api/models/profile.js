@@ -51,14 +51,21 @@ class Profile{
 
 
     //need to get all of user's donations
-    static async fetchDonation(userId){
-        if(!userId){
+    static async fetchDonations({ user }){
+        if(!user){
             throw new BadRequestError("No authentication recognized")
         }
-        const query = `SELECT * FROM give WHERE user_id=$1 AND is_used = true`
-        const result = await db.query(query)
-        const donations = result.rows
-        console.log(donations)
+        const query = `
+                       SELECT 
+                            id, 
+                            user_id, 
+                            product_pic, 
+                            product_type 
+                       FROM give 
+                       WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = false
+                       `
+        const results = await db.query(query, [user.username])
+        const donations = results.rows
         return donations
     }
 }
