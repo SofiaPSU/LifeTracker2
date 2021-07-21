@@ -54,7 +54,7 @@ class ApiClient {
   }
 
   async fetchNumberDonationsRecycled(){
-    return await this.request({endpoint:`profile`, method:`GET`})
+    return await this.request({ endpoint:`profile`, method:`GET` })
   }
   async logoutUser() {
     console.log("user is logged out")

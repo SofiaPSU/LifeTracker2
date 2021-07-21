@@ -35,7 +35,6 @@ const App = ()=> {
          
           setInitialized(true)
         }
-    
         const token = localStorage.getItem("beauty_token")
         if (token) {
           apiClient.setToken(token)
