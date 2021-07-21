@@ -28,13 +28,12 @@ router.post("/register", async (req,res, next)=>{
     }
 })
 
-router.get("/me",  async (req, res, next)=>{
-    console.log("local=", res.locals)
+router.get("/me", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
         const {user} = res.locals
-        const username = await User.fetchUserByUsername(user.username)
-        console.log(username)
-        const publicUser = User.makePublicUser(username)
+        
+        const userL = await User.fetchUserByUsername(user.username)
+        const publicUser = User.makePublicUser(userL)
         return res.status(200).json({ user: publicUser})
     } catch (err) {
         console.log(err)

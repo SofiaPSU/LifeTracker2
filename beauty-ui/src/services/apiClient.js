@@ -4,6 +4,7 @@ class ApiClient {
   constructor(remoteHostUrl) {
     this.remoteHostUrl = remoteHostUrl
     this.token = null
+    this.tokenName ="beauty_token"
   }
 
   setToken(token) {
@@ -44,9 +45,17 @@ class ApiClient {
     return await this.request({ endpoint: `auth/login`, method: `POST`, data: credentials })
   }
 
+  async createGiving(giving){
+    return await this.request({ endpoint:`give`, method: `POST`, data: giving })
+  }
+  
+  async fetchDonations(){
+    return await this.request({ endpoint: `profile/donations`, method:`GET` })
+  }
   async logoutUser() {
+    console.log("user is logged out")
     this.setToken(null)
-    localStorage.setItem("beauty_token", "")
+    localStorage.setItem(this.tokenName,"")
   }
 }
 

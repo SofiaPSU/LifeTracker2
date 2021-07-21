@@ -19,7 +19,7 @@ export const useLoginForm = ()=>{
       // redirect them to the home page
       console.log(user)
       if (user?.email) {
-        navigate("/")
+        navigate("/profile")
       }
     }, [user, navigate])
     
@@ -45,6 +45,7 @@ export const useLoginForm = ()=>{
       
       const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
       if (error) setErrors((e) => ({ ...e, form: error }))
+     
       if (data) {
         setUser(data.user)
         apiClient.setToken(data.token)
@@ -52,7 +53,9 @@ export const useLoginForm = ()=>{
       }
   
       setIsProcessing(false)
+      
     }
+    console.log(user)
 
     return { handleOnSubmit, handleOnChange, isProcessing, errors, form, showPasswordBox, hide}
 }

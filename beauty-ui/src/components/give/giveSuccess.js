@@ -7,7 +7,7 @@ const mapStyles = {
   height: '100%'
 };
 
-// export default function GiveSucess(){
+// export default function GiveSuccess(){
 
 export class MapContainer extends Component {
   state = {

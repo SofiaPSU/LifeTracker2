@@ -1,11 +1,12 @@
 import './navbar.css';
 import React from 'react';
-import {Link, Navigate} from 'react-router-dom';  
-import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';  
+//import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-
-import { Box, Container, Typography, Grid, makeStyles} from "@material-ui/core"
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import { Box, Container, Typography, Grid, makeStyles, Menu, MenuItem} from "@material-ui/core"
 import { useNavigate } from 'react-router';
+import StyledMenu from "../Menu/Menu"
 
 export default function Navbar({user, isAuthenticated, logoutUser}){
     
@@ -15,6 +16,7 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
         await logoutUser()
         navigate("/")
     }
+   // console.log(user)
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '5vh'}}>
             <nav>
@@ -35,18 +37,18 @@ export default function Navbar({user, isAuthenticated, logoutUser}){
                         </Link>
                     </li>
                     <li>
-                        <Link className="navbar-titles" to="/">
+                        <Link className="navbar-titles" to="/tips">
                             Tips
                         </Link>
                     </li>
-                    {isAuthenticated?( <Button className="logout" variant="contained" color="primary" onClick={handleOnLogout}>
-                            Logout
-                    </Button>):(<><Button className="login" variant="contained">
+                    {user?.id? (
+                    <StyledMenu logoutUser={logoutUser}/>
+                    ):(<><Button className="login" variant="contained" size="small">
                         <Link to="/login">
                             Log In
                             </Link>
                     </Button>
-                    <Button className="register" variant="contained">
+                    <Button className="register" variant="contained" size="small">
                         <Link to="/register">
                             Register
                          </Link>

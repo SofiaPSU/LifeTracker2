@@ -4,13 +4,15 @@ const bcrypt =require("bcrypt")
 const { BCRYPT_WORK_FACTOR } =require("../config")
 
 class User{
-    static async makePublicUser(user){
+    static makePublicUser(user){
         return{
             id: user.id,
             email: user.email,
             username: user.username,
             first_name: user.first_name,
             last_name: user.last_name,
+            age: user.age,
+            zip_code: user.zip_code
             
         }
     }
