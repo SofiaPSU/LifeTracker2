@@ -5,17 +5,6 @@ const security = require("../middleware/security")
 const tokens = require("../utils/tokens")
 
 
-
-router.get("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
-    try {
-        const {user} = res.locals
-        const userInfo = await Profile.fetchUserByEmail(user.email)
-        return res.status(200).json({ userInfo})
-    } catch (err) {
-        console.log(err)
-        next(err)
-    }
-})
 router.get("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
         const {user} =res.locals

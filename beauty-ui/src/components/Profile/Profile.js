@@ -5,6 +5,8 @@ import Avatar from '@material-ui/core/Avatar'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, green } from '@material-ui/core/colors'
 import { Button } from "@material-ui/core"
+import { useNavigate } from "react-router"
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,8 +21,24 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Profile({user}) {
+export default function Profile({user, logoutUser}) {
     const classes = useStyles();
+    const navigate = useNavigate()
+
+    const handleOnLogout = async ()=>{
+        await logoutUser()
+        navigate("/")
+    }
+    const handleOnClick =  () =>{
+        navigate("/settings")
+    }
+    const goToDonations = ()=>{
+        navigate("/donations")
+    }
+    const goToRecycled = ()=>{
+        navigate("/recycled")
+    }
+
     return (
         <div className= "profile">
             <div className="info">
@@ -32,9 +50,9 @@ export default function Profile({user}) {
                 <h2 className="text">{user.age}</h2>
                 <h2 className="text">{user.zip_code}</h2>
                 <h2 className="text">{user.email}</h2>
-                <Button className="text">Settings</Button>
+                <Button className="text" onClick={handleOnClick}>Settings</Button>
                 <br/><br/>
-                <Button className="text">Log Out</Button>
+                <Button className="text" onClick={handleOnLogout}>Log Out</Button>
                 </div>
                 </div>
             <div className="welcome">
@@ -45,14 +63,16 @@ export default function Profile({user}) {
             <div className="row">
             <div className="donations">
                 <Box border={1} borderColor='#2EC486'>
+                    <h2 className="number">#</h2>
                 <h2 className="text">Products Donated!</h2>
-                <Button className="text"><Box className= "box" border={1}>View Products</Box></Button>
+                <Button className="text" onClick={goToDonations}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
             </div>
             <div className="recycled">
                 <Box border={1} borderColor='#2EC486'>
-                <h2 className="text">Products Recycled!</h2>
-                <Button className="text" ><Box className= "box" border={1}>View Products</Box></Button>
+                <h2 className="number">#</h2>
+                <h2 className="text" >Products Recycled!</h2>
+                <Button className="text" onClick={goToRecycled}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
                 </div>
            
