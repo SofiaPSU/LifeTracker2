@@ -1,29 +1,33 @@
 import "./Profile.css"
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
+<<<<<<< HEAD
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange } from '@material-ui/core/colors'
+=======
+>>>>>>> main
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
+import apiClient from "../../services/apiClient"
+import { useEffect, useState } from "react"
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    orange: {
-      color: theme.palette.getContrastText(deepOrange[500]),
-      backgroundColor: deepOrange[500],
-    },
-  }));
 
 export default function Profile({user, logoutUser}) {
-    const classes = useStyles();
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
+    const [donate, setDonation] = useState([])
+    const [recycle, setRecycled]= useState([])
+    
+    useEffect(() => {
+        
+        const initApp = async () => {
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+            if (data)  
+             setDonation(data.donations)
+             setRecycled(data.recycled)
+        }
+      initApp()
+        }, [])
     const handleOnLogout = async ()=>{
         await logoutUser()
         navigate("/")
@@ -62,14 +66,14 @@ export default function Profile({user, logoutUser}) {
             <div className="row">
             <div className="donations">
                 <Box border={1} borderColor='#2EC486'>
-                    <h2 className="number">#</h2>
+                    <h2 className="number">{donate}</h2>
                 <h2 className="text">Products Donated!</h2>
                 <Button className="text" onClick={goToDonations}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
             </div>
             <div className="recycled">
                 <Box border={1} borderColor='#2EC486'>
-                <h2 className="number">#</h2>
+                <h2 className="number">{recycle}</h2>
                 <h2 className="text" >Products Recycled!</h2>
                 <Button className="text" onClick={goToRecycled}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>

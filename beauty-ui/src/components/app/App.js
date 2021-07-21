@@ -34,10 +34,9 @@ const App = ()=> {
         const initApp = async () => {
           const { data } = await apiClient.fetchUserFromToken()
           if (data) setUser(data.user)
-          //console.log(data)
+         
           setInitialized(true)
         }
-    
         const token = localStorage.getItem("beauty_token")
         if (token) {
           apiClient.setToken(token)

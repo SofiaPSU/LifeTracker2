@@ -4,23 +4,23 @@ const router = express.Router()
 const security = require("../middleware/security")
 const tokens = require("../utils/tokens")
 
-
-router.get("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
+router.get("/", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
-        const {user} =res.locals
-        const userDonations = await Profile.fetchNumberDonations(user.user_id)
-        return res.status(200).json({ userDonations})
-    } catch (error) {
-        console.log(error)
-        next(error)
-    }
-} )
-
-router.get("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
-    try {
-        const {user} =res.locals
-        const userRecycled = await Profile.fetchNumberDonations(user.user_id)
-        return res.status(200).json({ userRecycled})
+        const user =res.locals.user
+        const recycleJson = await Profile.fetchNumberRecycled({ user })
+        const donationJson = await Profile.fetchNumberDonations({ user })
+       // console.log(recycled[0].quantity)
+       var recycled = 0
+       var donations =0
+       donationJson.forEach(function (item,index){
+        console.log(donationJson[index].quantity)
+       donations += donationJson[index].quantity
+    })
+       recycleJson.forEach(function (item,index){
+            // console.log(recycled[index].quantity)
+           recycled += recycleJson[index].quantity
+        })
+        return res.status(200).json({ donations, recycled })
     } catch (error) {
         console.log(error)
         next(error)

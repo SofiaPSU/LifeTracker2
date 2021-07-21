@@ -6,15 +6,12 @@ import { Box, Typography, makeStyles, Grid } from "@material-ui/core"
 //import Container from '@material-ui/core/Container';
 
 //for grids
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
 
 
 //useStyles is like CSS in js
 const useStyles = makeStyles((theme) => ({
+
 moisturizerPaper: {
     height: 550,
     width: 500,
@@ -23,75 +20,68 @@ moisturizerPaper: {
     backgroundSize: 'cover',
     marginLeft: 80,
     padding: 25,
-
     
-    },
-
-    cleanserPaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1556228720-195a672e8a03?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},
+cleanserPaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1556228720-195a672e8a03?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
         
-    },
-
-    serumPaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1600180583258-6d9b0c7b782b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnVtc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},
+serumPaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1600180583258-6d9b0c7b782b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnVtc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
             
-    },     
-
-    foundationPaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},     
+foundationPaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
         
-    },
-
-    mascaraPaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1560725613-4b52e67fc67b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},
+mascaraPaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1560725613-4b52e67fc67b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
             
-    },   
-    powderPaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1590156424570-698d124ec7dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHBvd2RlciUyMG1ha2V1cHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},
+powderPaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1590156424570-698d124ec7dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHBvd2RlciUyMG1ha2V1cHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
         
-    },
-
-    perfumePaper: {
-        height: 550,
-        width: 500,
-        background: `url(https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fHBlcmZ1bWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        marginLeft: 80,
-        padding: 25,
+},
+perfumePaper: {
+    height: 550,
+    width: 500,
+    background: `url(https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fHBlcmZ1bWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    marginLeft: 80,
+    padding: 25,
             
-    },   
-
+},   
 wrapper: {
     height: 700,
     width: '100vw',
@@ -100,8 +90,8 @@ wrapper: {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
 
-  },
-  title: {
+},
+title: {
     fontFamily: "Euclid Circular A",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -110,8 +100,8 @@ wrapper: {
     letterSpacing: "-0.015em",
     color: "#8F5338",
 
-  },
-  subtitle: {
+},
+subtitle: {
     width: "50%",
     marginLeft: "auto",
     marginRight: "auto",
@@ -124,8 +114,8 @@ wrapper: {
     letterSpacing: "-0.015em",
     color: "#000000",
 
-  },
-  registerBTN: {
+},
+registerBTN: {
     marginTop: 10, // space between outer edge and adjacent elements 
     padding: 20, //space between content , outer edge
     width: 270,
@@ -139,9 +129,8 @@ wrapper: {
     background: "#96583C",
     color: "#FFFFFF",
 
-  },
-
-  bottom: {
+},
+bottom: {
     display: "Flex",
     width: '100vw',
     padding: 60,
@@ -154,9 +143,9 @@ wrapper: {
     color: "#FFFFFF",
     background: "#5C625E",
 
-  },
+},
 
-  skincare: {
+skincare: {
     fontFamily: "Euclid Circular A",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -169,9 +158,9 @@ wrapper: {
     marginLeft: 80,
     color: "#96583C",
 
-  },
+},
 
-  productTitle: {
+productTitle: {
     fontFamily: "Euclid Circular A",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -181,9 +170,9 @@ wrapper: {
     letterSpacing: "-0.015em",
     color: "#5C625E"
     
-  },
+},
 
-  productSubtitle: {
+productSubtitle: {
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -195,7 +184,7 @@ wrapper: {
     letterSpacing: "-0.015em",
     color: "#756F6F;"
     
-  },
+},
 
 
 }));
