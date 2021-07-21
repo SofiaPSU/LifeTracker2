@@ -48,5 +48,25 @@ class Profile{
         console.log(recycled)
         return recycled.length
     }
+
+
+    //need to get all of user's donations
+    static async fetchDonations({ user }){
+        if(!user){
+            throw new BadRequestError("No authentication recognized")
+        }
+        const query = `
+                       SELECT 
+                            id, 
+                            user_id, 
+                            product_pic, 
+                            product_type 
+                       FROM give 
+                       WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = false
+                       `
+        const results = await db.query(query, [user.username])
+        const donations = results.rows
+        return donations
+    }
 }
 module.exports = Profile
