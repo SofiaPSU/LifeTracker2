@@ -2,8 +2,18 @@ import './giveSuccess.css';
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
+import CurrentLocation from '../give/map';
+<div>
+  <h1 className="title">
+    Thank you for your donation!
+  </h1>
+  <h2 className="subtitle">
+    Here are the nearest drop off centers:
+  </h2>
+</div>
+
 const mapStyles = {
-  width: 400,
+  width: '100%',
   height: '100%'
 };
 
@@ -33,7 +43,6 @@ export class MapContainer extends Component {
 
   render() {
     return (
-
       <Map
         google={this.props.google}
         zoom={14}
@@ -41,13 +50,23 @@ export class MapContainer extends Component {
         initialCenter={
           {
             lat: 37.7749,
-            lng: 122.4194
+            lng: -122.4194
+          }
+        }
+        center2={
+          {
+            lat: 37.7793,
+            lng: -122.4192
           }
         }
       >
+        <CurrentLocation
+        centerAroundCurrentLocation
+        google={this.props.google}
+        >
         <Marker
           onClick={this.onMarkerClick}
-          name={'Kenyatta International Convention Centre'}
+          name={'Hīrā Drop Off Center'}
         />
         <InfoWindow
           marker={this.state.activeMarker}
@@ -58,6 +77,17 @@ export class MapContainer extends Component {
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
+      <Marker onClick={this.onMarkerClick} name={'Current Location'} />
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
+      </CurrentLocation>
       </Map>
     );
   }
