@@ -7,6 +7,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import GiveSuccess from "../give/giveSuccess";
 import GiveUnauthorized from "../give/giveUnauthorized";
+import Tips from "../Tips/tips";
 import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
 import { useEffect } from "react";
@@ -59,6 +60,7 @@ const App = ()=> {
             <BrowserRouter>
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
+                    <Route path = "/tips" element={ <Tips /> }/>
                     <Route path="/give" element={ <Give user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
