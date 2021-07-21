@@ -1,9 +1,9 @@
 import './home.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles, Grid, FormHelperText } from "@material-ui/core"
-import Container from '@material-ui/core/Container';
+import { Box, Typography, makeStyles, Grid } from "@material-ui/core"
+//import Container from '@material-ui/core/Container';
 
 //for grids
 import Paper from '@material-ui/core/Paper';
