@@ -32,7 +32,7 @@ const App = ()=> {
         const initApp = async () => {
           const { data } = await apiClient.fetchUserFromToken()
           if (data) setUser(data.user)
-          console.log(data)
+         
           setInitialized(true)
         }
     

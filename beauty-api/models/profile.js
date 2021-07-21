@@ -3,28 +3,28 @@ const {BadRequestError} = require("../utils/errors")
 
 
 class Profile{
-
     //need to get the number of donations
-    static async fetchNumberDonations(userId){
-        if(!userId){
+    static async fetchNumberDonations({user}){
+        if(!user.username){
             throw new BadRequestError("No email provided")
         }
-        //where user
-        const query =`SELECT * FROM give WHERE user_id =$1 AND is_used = FALSE`
-        const result = await db.query(query, [userId])
-        const donations = result.rows[0]
-        console.log(donations)
+        const query =`SELECT quantity FROM give WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = FALSE`
+        const result = await db.query(query, [user.username])
+        const donations = result.rows
+        //console.log(donations)
         return donations
     }
     //need to get number of recycled products
-    static async fetchNumberRecycled(userId){
-        if(!userId){
+    static async fetchNumberRecycled({user}){
+        if(!user.username){
             throw new BadRequestError("No email provided")
         }
-        const query =`SELECT * FROM give WHERE user_id =$1 AND is_used = true`
-        const result = await db.query(query, [userId])
-        const recycled = result.rows[0]
-        console.log(recycled)
+        const query =`SELECT quantity FROM give WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = true`
+        const result = await db.query(query, [user.username])
+        const recycled = result.rows
+        //console.log(recycled)
+        
+     // recycled.reduce(function(a,b) {return a+b;}, 0)
         return recycled
     }
 

@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, green } from '@material-ui/core/colors'
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
-
+import { useEffect } from "react"
+import apiClient from "../../services/apiClient"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +25,20 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile({user, logoutUser}) {
     const classes = useStyles();
     const navigate = useNavigate()
-
+    useEffect(() => {
+        
+        const initApp = async () => {
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+            console.log(data) 
+            if (data) 
+            console.log(data.donations)  
+            console.log(data.recycled)  
+            // return(<div> <h1>{data.donations}</h1>
+            //         <h1>{data.recycled}</h1>
+            // </div>)
+        }
+      initApp()
+        }, [])
     const handleOnLogout = async ()=>{
         await logoutUser()
         navigate("/")
