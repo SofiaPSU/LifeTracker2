@@ -17,7 +17,7 @@ export const useLoginForm = ()=>{
     useEffect(() => {
       // if user is already logged in,
       // redirect them to the home page
-      console.log(user)
+
       if (user?.email) {
         navigate("/profile")
       }
@@ -55,7 +55,6 @@ export const useLoginForm = ()=>{
       setIsProcessing(false)
       
     }
-    console.log(user)
 
     return { handleOnSubmit, handleOnChange, isProcessing, errors, form, showPasswordBox, hide}
 }

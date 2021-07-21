@@ -3,20 +3,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';  
 //import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import { Box, Container, Typography, Grid, makeStyles, Menu, MenuItem} from "@material-ui/core"
-import { useNavigate } from 'react-router';
+import {  Container} from "@material-ui/core"
 import StyledMenu from "../Menu/Menu"
 
-export default function Navbar({user, isAuthenticated, logoutUser}){
-    
-    const navigate = useNavigate()
+export default function Navbar({ user, logoutUser }){
 
-    const handleOnLogout = async ()=>{
-        await logoutUser()
-        navigate("/")
-    }
-   // console.log(user)
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '5vh'}}>
             <nav>

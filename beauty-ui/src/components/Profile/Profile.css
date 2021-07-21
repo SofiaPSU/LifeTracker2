@@ -14,20 +14,20 @@
     width:fit-content;
     height:fit-content;
     padding:5%;
+    justify-content: center;
 
 }
 .welcome{
     font-family: 'Arima Madurai', cursive;
     height:fit-content;
-    margin-left:-20%;
-    
-   
+    margin-left:-20%; 
 }
 .user-info{
     text-align: center;
     width:fit-content;
     height:fit-content;
     padding:5%;
+    justify-content: center;
 }
 .row{
     display: inline-grid;
@@ -58,4 +58,7 @@
 .info{
     display:inline-grid;
     text-align: center;
+}
+.number{
+    font-family : 'Arima Madurai', cursive ;
 }
