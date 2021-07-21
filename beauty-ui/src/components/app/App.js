@@ -12,6 +12,7 @@ import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
 import { useEffect } from "react";
 import Profile from "../Profile/Profile";
+import UserDonations from "../View/donations";
 
 export default function AppContainer(){
     return (
@@ -68,6 +69,7 @@ const App = ()=> {
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
                     <Route path="/profile" element={ <Profile user={user}/>}/>
+                    <Route path="/profile/donations" element={ <UserDonations user={user} setUser={setUser}/> } />
                 </Routes>
             </BrowserRouter>
         </div>
