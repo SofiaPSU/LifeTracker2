@@ -1,5 +1,5 @@
 import "./tips.css"
-import { Container, makeStyles, withStyles, Paper, Grid, Avatar, Button } from "@material-ui/core";
+import { Container, makeStyles, Paper, Grid, Avatar, Button } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({

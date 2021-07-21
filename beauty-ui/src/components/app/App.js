@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import Profile from "../Profile/Profile";
 import UserDonations from "../View/donations";
 
+
 export default function AppContainer(){
     return (
         <AuthContextProvider>
@@ -23,8 +24,9 @@ export default function AppContainer(){
 }
 
 const App = ()=> {
-    const {user, setUser, initialized, setInitialized, error, setError} = useAuthContext()
-
+    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError} = useAuthContext()
+    
+    
     const isAuthenticated = Boolean(initialized && user?.email)
     
     useEffect(() => {
@@ -32,7 +34,7 @@ const App = ()=> {
         const initApp = async () => {
           const { data } = await apiClient.fetchUserFromToken()
           if (data) setUser(data.user)
-          console.log(data)
+          //console.log(data)
           setInitialized(true)
         }
     
@@ -45,6 +47,21 @@ const App = ()=> {
         }
       }, [isAuthenticated])
     
+      
+      useEffect(() => {
+        const fetchDonations = async () => {
+          const { data, error } = await apiClient.fetchDonations()
+          if (error) setError(error)
+          if (data?.donations) {
+            //console.log(data.donations)
+            setDonations(data.donations)
+          }
+        }
+        
+        fetchDonations()
+      }, [])
+
+
       const clearAppState = () => {
         console.log("function is invoking")
         setUser({})
@@ -69,7 +86,10 @@ const App = ()=> {
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
                     <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser}/>}/>
-                    <Route path="/profile/donations" element={ <UserDonations user={user} setUser={setUser}/> } />
+                    <Route path="/profile/donations" element={ <UserDonations 
+                                                                user={user} 
+                                                                setUser={setUser}
+                                                                donations={donations} /> } />
                 </Routes>
             </BrowserRouter>
         </div>

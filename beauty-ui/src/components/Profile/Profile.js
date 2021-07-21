@@ -1,9 +1,8 @@
 import "./Profile.css"
-import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import { makeStyles } from '@material-ui/core/styles'
-import { deepOrange, green } from '@material-ui/core/colors'
+import { deepOrange } from '@material-ui/core/colors'
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 
@@ -33,7 +32,7 @@ export default function Profile({user, logoutUser}) {
         navigate("/settings")
     }
     const goToDonations = ()=>{
-        navigate("/donations")
+        navigate("/profile/donations")
     }
     const goToRecycled = ()=>{
         navigate("/recycled")
