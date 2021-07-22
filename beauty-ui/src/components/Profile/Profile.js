@@ -1,11 +1,6 @@
 import "./Profile.css"
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
-<<<<<<< HEAD
-import { makeStyles } from '@material-ui/core/styles'
-import { deepOrange } from '@material-ui/core/colors'
-=======
->>>>>>> main
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import apiClient from "../../services/apiClient"
