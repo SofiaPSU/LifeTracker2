@@ -1,33 +1,16 @@
 import "./Profile.css"
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
-<<<<<<< HEAD
-import { makeStyles } from '@material-ui/core/styles'
-import { deepOrange } from '@material-ui/core/colors'
-=======
->>>>>>> main
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import apiClient from "../../services/apiClient"
 import { useEffect, useState } from "react"
 
 
-export default function Profile({user, logoutUser}) {
+export default function Profile({user, logoutUser, donate, recycle}) {
 
     const navigate = useNavigate()
-    const [donate, setDonation] = useState([])
-    const [recycle, setRecycled]= useState([])
     
-    useEffect(() => {
-        
-        const initApp = async () => {
-            const { data } = await apiClient.fetchNumberDonationsRecycled()
-            if (data)  
-             setDonation(data.donations)
-             setRecycled(data.recycled)
-        }
-      initApp()
-        }, [])
     const handleOnLogout = async ()=>{
         await logoutUser()
         navigate("/")
