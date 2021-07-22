@@ -24,7 +24,7 @@ export default function AppContainer(){
 }
 
 const App = ()=> {
-    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError} = useAuthContext()
+    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError, donate, setDonation, recycle, setRecycled} = useAuthContext()
     
     
     const isAuthenticated = Boolean(initialized && user?.email)
@@ -60,6 +60,16 @@ const App = ()=> {
         fetchDonations()
       }, [])
 
+      useEffect(() => {
+        
+        const ProfileApp = async () => {
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+            if (data)  
+             setDonation(data.donations)
+             setRecycled(data.recycled)
+        }
+      ProfileApp()
+        }, [])
 
       const clearAppState = () => {
         console.log("function is invoking")
@@ -84,7 +94,7 @@ const App = ()=> {
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donate={donate} recycle={recycle}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
