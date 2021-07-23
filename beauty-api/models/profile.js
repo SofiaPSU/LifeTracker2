@@ -4,7 +4,7 @@ const {BadRequestError} = require("../utils/errors")
 
 class Profile{
     //need to get the number of donations
-    static async fetchNumberDonations({user}){
+    static async fetchNumberDonations({ user }){
         if(!user.username){
             throw new BadRequestError("No email provided")
         }
@@ -15,7 +15,7 @@ class Profile{
         return donations
     }
     //need to get number of recycled products
-    static async fetchNumberRecycled({user}){
+    static async fetchNumberRecycled({ user }){
         if(!user.username){
             throw new BadRequestError("No email provided")
         }

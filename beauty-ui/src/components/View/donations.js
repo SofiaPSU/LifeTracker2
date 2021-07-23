@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function UserDonations({ donations, donate }){
+export default function UserDonations({ donations, donateNumber }){
     const navigate = useNavigate()
     const handleOnClick =  () =>{
         navigate("/profile/recycles")
@@ -59,7 +59,7 @@ export default function UserDonations({ donations, donate }){
                 <Grid container className="usersDonations">
                    
                     <Grid container className={classes.title} >
-                        <h2>Total Donated Products: {donate}</h2>
+                        <h2>Total Donated Products: {donateNumber}</h2>
                         <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
                             View Recycled
                         </Button>

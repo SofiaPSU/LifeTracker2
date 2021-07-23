@@ -43,68 +43,70 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  export default function UserRecycles({ recycles, recycle }){
+  export default function UserRecycles({ recycles, recycleNumber }){
     const navigate = useNavigate()
     const handleOnClick =  () =>{
         navigate("/profile/donations")
     }
 
+    console.log(recycles)
+
     const classes = useStyles();
-   //console.log(donations)
-    // return(
-    //     <div className="Donations">
-    //          <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
-    //             <Grid container className="usersDonations">
+  
+    return(
+        <div className="Recycles">
+             <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
+                <Grid container className="usersRecycles">
                    
-    //                 <Grid container className={classes.title} >
-    //                     <h2>Total Donated Products: {donate}</h2>
-    //                     <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
-    //                         View Recycled
-    //                     </Button>
+                    <Grid container className={classes.title} >
+                        <h2>Total Recycled Products: {recycleNumber}</h2>
+                        <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
+                            View Donated
+                        </Button>
                         
-    //                 </Grid>
+                    </Grid>
                     
-    //                 <Grid container className={classes.feed}>
-    //                     {donations.map((donation) => {
-    //                         // console.log(donation)
-    //                     // console.log(donations[donation].product_pic) 
-    //                         return ( 
-    //                             <Card className={classes.root} key={donation.id} >
+                    <Grid container className={classes.feed}>
+                        {recycles.map((recycle) => {
+                            // console.log(donation)
+                        // console.log(donations[donation].product_pic) 
+                            return ( 
+                                <Card className={classes.root} key={recycle.id} >
                                         
-    //                                     <CardMedia 
-    //                                     className={classes.media}
-    //                                     image={donation.product_pic}
-    //                                     title="Donation"
-    //                                     />
+                                        <CardMedia 
+                                        className={classes.media}
+                                        image={recycle.product_pic}
+                                        title="Recycle"
+                                        />
                                         
-    //                                     <CardContent>
-    //                                         <Typography variant="body1" color="textSecondary" component="p">
-    //                                            Product: {donation.product_type} 
-    //                                         </Typography>
+                                        <CardContent>
+                                            <Typography variant="body1" color="textSecondary" component="p">
+                                               Product: {recycle.product_type} 
+                                            </Typography>
 
-    //                                         <Typography variant="body1" color="textSecondary" component="p">
-    //                                            Qty: {donation.quantity}
-    //                                         </Typography>
+                                            <Typography variant="body1" color="textSecondary" component="p">
+                                               Qty: {recycle.quantity}
+                                            </Typography>
 
-    //                                         <Typography variant="body1" color="textSecondary" component="p" className={classes.timestamp}>
-    //                                            Created at: {donation.created_at}
-    //                                         </Typography>
-
-
-    //                                     </CardContent>
+                                            <Typography variant="body1" color="textSecondary" component="p" className={classes.timestamp}>
+                                               Created at: {recycle.created_at}
+                                            </Typography>
 
 
-    //                             </Card>
+                                        </CardContent>
 
-    //                         )
+
+                                </Card>
+
+                            )
                         
-    //                     })
-    //                     }
-    //                 </Grid>
-    //             </Grid>
-    //          </Container>
-    //     </div>
-    // );
+                        })
+                        }
+                    </Grid>
+                </Grid>
+             </Container>
+        </div>
+    );
 
 
 
