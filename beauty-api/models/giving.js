@@ -24,6 +24,7 @@ class Giving{
             INSERT INTO give(product_type, quantity, is_used, zip_code, product_pic, user_id)
             VALUES($1, $2, $3, $4, $5, (SELECT id FROM users WHERE username = $6) )
             RETURNING id,
+                      created_at,
                       product_type,
                       quantity,
                       is_used,

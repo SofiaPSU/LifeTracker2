@@ -1,5 +1,7 @@
 
-import { Grid, Card, Container, CardMedia, CardContent, makeStyles, Typography } from "@material-ui/core";
+import { Grid, Card, Container, CardMedia, CardContent, makeStyles, Typography, Button } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,15 +14,22 @@ const useStyles = makeStyles((theme) => ({
      
     },
     title: {
-     display:"flex",
+    //  display:"flex",
      paddingTop: '5%',
      paddingBottom: '5%',
+     alignItems:'center',
+     justifyContent:'space-between',
+    },
+
+    Button:{
+        justifyContent:'flex-end',
     },
     feed: {
-     justifyContent:"flex-start",
+     justifyContent:"space-between",
      alignContent:"space-evenly",
      gridRowGap:'4rem' ,
      gridColumnGap: '2rem',
+
 
     },
     card: {
@@ -36,19 +45,28 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function UserDonations({ donations }){
+export default function UserDonations({ donations, donate }){
+    const navigate = useNavigate()
+    const handleOnClick =  () =>{
+        navigate("/profile/recycles")
+    }
 
     const classes = useStyles();
-   console.log(donations)
+   //console.log(donations)
     return(
         <div className="Donations">
              <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
                 <Grid container className="usersDonations">
-                    <Grid item className={classes.title}>
-                        <h2>Total Donated Products  #</h2>
-                    
+                   
+                    <Grid container className={classes.title} >
+                        <h2>Total Donated Products: {donate}</h2>
+                        <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
+                            View Recycled
+                        </Button>
+                        
                     </Grid>
-                    <Grid container className={classes.feed} >
+                    
+                    <Grid container className={classes.feed}>
                         {donations.map((donation) => {
                             // console.log(donation)
                         // console.log(donations[donation].product_pic) 

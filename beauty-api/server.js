@@ -30,6 +30,8 @@ app.use("/give", giveRoutes)
 app.use("/profile", profileRoutes)
 //Obehi -Profile Donate page
 app.use("/profile/donations", profileRoutes)
+//Obehi -Profile Recycle page
+app.use("/profile/recycles", profileRoutes)
 
 
 app.get("/", async (req, res, next) => {
