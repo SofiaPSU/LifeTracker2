@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth")
 const giveRoutes = require("./routes/givings")
 const security = require("./middleware/security")
 const profileRoutes = require("./routes/profile")
+const settings = require("./routes/settings")
 
 
 //added by Kelsey
@@ -30,6 +31,9 @@ app.use("/give", giveRoutes)
 app.use("/profile", profileRoutes)
 //Obehi -Profile Donate page
 app.use("/profile/donations", profileRoutes)
+
+app.use("/settings", settings)
+
 
 
 app.get("/", async (req, res, next) => {

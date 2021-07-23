@@ -3,18 +3,10 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import CurrentLocation from '../give/map';
-<div>
-  <h1 className="title">
-    Thank you for your donation!
-  </h1>
-  <h2 className="subtitle">
-    Here are the nearest drop off centers:
-  </h2>
-</div>
 
 const mapStyles = {
-  width: '100%',
-  height: '100%'
+  width: '90%',
+  height: "40%"
 };
 
 // export default function GiveSuccess(){
@@ -42,31 +34,45 @@ export class MapContainer extends Component {
   };
 
   render() {
+    
     return (
+    <div>
+      <h1 className="title">
+        Thank you for your donation!
+      </h1>
+      <h2 className="subtitle">
+        Here are the nearest drop off centers:
+      </h2>
       <Map
         google={this.props.google}
-        zoom={14}
+        zoom={12}
         style={mapStyles}
-        initialCenter={
-          {
-            lat: 37.7749,
-            lng: -122.4194
-          }
-        }
-        center2={
-          {
-            lat: 37.7793,
-            lng: -122.4192
-          }
-        }
       >
-        <CurrentLocation
-        centerAroundCurrentLocation
-        google={this.props.google}
-        >
         <Marker
+          position={ {lat: 37.7749, lng: -122.4194} }
           onClick={this.onMarkerClick}
-          name={'Hīrā Drop Off Center'}
+          name={'Hīrā Drop Off Center (1765 California St, San Francisco, CA 94109)'}
+          
+        />
+        <Marker
+          position={ {lat: 37.7993, lng: -122.3977} }
+          onClick={this.onMarkerClick}
+          name={'Hīrā Drop Off Center (1098 The Embarcadero, San Francisco, CA 94111)'}
+        />
+        <Marker
+          position={ {lat: 37.8715, lng: -122.2730} }
+          onClick={this.onMarkerClick}
+          name={'Hīrā Drop Off Center (2495 Bancroft Way, Berkeley, CA 94704)'}
+        />
+        <Marker
+          position={ {lat: 37.7640954, lng: -122.2419132} }
+          onClick={this.onMarkerClick}
+          name={'Hīrā Drop Off Center (2201 Shore Line Dr, Alameda, CA 94501)'}
+        />
+        <Marker
+          position={ {lat: 37.8128, lng: -122.2610} }
+          onClick={this.onMarkerClick}
+          name={'Hīrā Drop Off Center (230 Bay Pl, Oakland, CA 94612)'}
         />
         <InfoWindow
           marker={this.state.activeMarker}
@@ -77,7 +83,16 @@ export class MapContainer extends Component {
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
-      <Marker onClick={this.onMarkerClick} name={'Current Location'} />
+  
+  
+        {/* <CurrentLocation
+        centerAroundCurrentLocation
+        google={this.props.google}
+        >
+         */}
+      {/* <Marker 
+        onClick={this.onMarkerClick} 
+        name={'Current Location'} />
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -86,9 +101,10 @@ export class MapContainer extends Component {
           <div>
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
-        </InfoWindow>
-      </CurrentLocation>
+        </InfoWindow> */}
+      {/* </CurrentLocation> */}
       </Map>
+      </div>
     );
   }
 }
