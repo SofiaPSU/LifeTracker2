@@ -61,7 +61,6 @@ export default function Settings({user}) {
       ...userSettings,
       [e.target.name]: e.target.value
     }
-    console.log(newData)
     setUserSettings(newData)
   }
   useEffect(()=>{
@@ -87,8 +86,6 @@ export default function Settings({user}) {
       first_name: userSettings.first_name,
       last_name: userSettings.last_name,
     })
-    console.log(data)
-    console.log(error)
   }
   
   return (
@@ -117,14 +114,14 @@ export default function Settings({user}) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="lname"
                 variant="outlined"
                 required
                 fullWidth
                 id="lastName"
                 label={<span className="text">Last Name</span> }
                 name="last_name"
-                autoComplete="lname"
-                value={userSettings.lastName}
+                value={userSettings.last_name}
                 onChange={handleOnChange}
               />
             </Grid>
@@ -154,13 +151,7 @@ export default function Settings({user}) {
                 onChange={handleOnChange}
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel onClick={()=>{}}
-                control={<Checkbox value="showPassword" color="primary" />}
-                label={<span className="text">Show Password</span> }
-              />
             </Grid>
-          </Grid>
           <Button
             type="submit"
             fullWidth
