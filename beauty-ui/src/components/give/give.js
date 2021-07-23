@@ -16,6 +16,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import apiClient from "../../services/apiClient";
 // import { WithStyles } from "@material-ui/core";
 
+//Styles:CSS using Material UI
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -98,40 +99,40 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
         is_used:toggle,
         zip_code:"",
         product_pic:"",
-      })
+    })
 
-      useEffect(() => {
-        // if user is already logged in,
-        // redirect them to the detailed activity page aka an authenticated view
-        if (user?.email) {
-          navigate("/give/")
-        }
-        else if(!user?.email && initialized){
-          
-          navigate("/give/giveUnauthorized")
-        }
-      }, [user, navigate, initialized])
-
-    const handleOnInputChange = (event) => {
+    useEffect(() => {
+      // if user is already logged in,
+      // redirect them to the detailed activity page aka an authenticated view
+      if (user?.email) {
+        navigate("/give/")
+      }
+      else if(!user?.email && initialized){
         
-        setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-       
-       
-    }
-     
-    const toggler = () => {
-      toggle ? setToggle(false): setToggle(true)
-     
-    }
+        navigate("/give/giveUnauthorized")
+      }
+    }, [user, navigate, initialized])
 
-    
-    const handleChange = (event) => {
-      // setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+   
+    //Obehi: Handles inputting in the form
+      const handleOnInputChange = (event) => {
+          setForm((f) => ({ ...f, [event.target.name]: event.target.value }))  
+      }
+      
+      //Obehi: Handles Toggle Button Data
+      const toggler = () => {
+        toggle ? setToggle(false): setToggle(true)
+      
+      }
+
+    //Obehi: handles change of Toggle button
+     const handleChange = (event) => {
       setForm((f) => ({ ...f, [event.target.name]: event.target.checked }))
-
-      // setState({ ...state, [event.target.name]: event.target.checked });
     };
 
+   
+   
+   
     const handleOnSubmit = async () => {
       setIsProcessing(true)
       setErrors((e) => ({ ...e, form: null }))
@@ -145,38 +146,43 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
       })
      
       if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
-   
-      if(data.is_used === false){
-        console.log(data)
+      
+      
+      if(data.givings.is_used=== false){
+       // console.log(data)
+
+        setDonations(donations=>[...donations, data.givings])
         setDonateNumber(d=>{
         
           // console.log(d)
           // console.log(data)
           // console.log(form.quantity)
         return  d + data.givings.quantity})
+        
+    
+    
+      }
 
-
+      console.log(data.givings.is_used)
+      if(data.givings.is_used ===true){
+      
+        setRecycles(recycles=>[...recycles, data.givings])
         setRecycleNumber(r=>{
           // console.log(d)
           // console.log(data)
           // console.log(form.quantity)
         return  r + data.givings.quantity})
-
-
-
-       // console.log(data.givings.product_type)
-        console.log(data.givings.created_at)
-        setDonations(donations=>[...donations, data.givings])
-        setRecycles(recycles=>[...recycles, data.givings])
+        
 
       }
+
 
       setIsProcessing(false)
 
 
      navigate("/give/giveSuccess")
     
-     }
+    }
     
  
   const classes = useStyles();

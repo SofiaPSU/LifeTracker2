@@ -51,6 +51,8 @@ const App = ()=> {
       }, [isAuthenticated])
     
       
+      
+      //Rendering all user had donated
       useEffect(() => {
         const fetchDonations = async () => {
           const { data, error } = await apiClient.fetchDonations()
@@ -58,18 +60,21 @@ const App = ()=> {
           if (data?.donations) {
             //console.log(data.donations)
             setDonations(data.donations)
-            console.log(data.donations[0].created_at)
+            //console.log(data.donations[0].created_at)
           }
         }
         
         fetchDonations()
       }, [])
 
+      
+      
+      //Rendering all user has recycled
       useEffect(() => {
         const fetchRecycles = async () => {
           const { data, error } = await apiClient.fetchRecycles()
           if (error) setError(error)
-          if (data?.donations) {
+          if (data?.recycles) {
             //console.log(data.donations)
             setRecycles(data.recycles)
            // console.log(data.donations[0].created_at)
@@ -81,26 +86,27 @@ const App = ()=> {
 
 
 
-
-
-
-
-
+    //Rendering Number of donations and Number of Recycles
       useEffect(() => {
         
         const ProfileApp = async () => {
             const { data } = await apiClient.fetchNumberDonationsRecycled()
 
             if (data)  {
-            setRecycleNumber(data.recycles)
-             setDonateNumber(data.donations)}
+            setRecycleNumber(data.recycleNumber)
+           
+           setDonateNumber(data.donationNumber)
+           }
              
 
         }
       ProfileApp()
         }, [setDonateNumber, setRecycleNumber])
 
-      const clearAppState = () => {
+      
+
+
+        const clearAppState = () => {
         console.log("function is invoking")
         setUser({})
         setError(null)
@@ -131,7 +137,7 @@ const App = ()=> {
                                                                 setUser={setUser}
                                                                 //setDonations={setDonations}
                                                                 donations={donations} 
-                                                                donate={donate}
+                                                                donateNumber={donateNumber}
                                                                 /> } />
 
                     <Route path="/profile/recycles" element={ <UserRecycles
@@ -139,7 +145,7 @@ const App = ()=> {
                                                                                     setUser={setUser}
                                                                                     //setDonations={setDonations}
                                                                                     recycles={recycles} 
-                                                                                    recycle={recycle}
+                                                                                    recycleNumber={recycleNumber}
                                                                                     /> } />
 
                     <Route path="/profile/settings" element={ <Settings user={user}/>}/>

@@ -10,17 +10,24 @@ router.get("/", security.requireAuthenticatedUser, async (req, res, next)=>{
         const recycleJson = await Profile.fetchNumberRecycled({ user })
         const donationJson = await Profile.fetchNumberDonations({ user })
        // console.log(recycled[0].quantity)
-       var recycled = 0
-       var donations =0
+       //var recycled = 0
+       var recycleNumber = 0
+       //var donations =0
+       var donationNumber =0
        donationJson.forEach(function (item,index){
         console.log(donationJson[index].quantity)
-       donations += donationJson[index].quantity
+    //    donations += donationJson[index].quantity
+       donationNumber += donationJson[index].quantity
     })
        recycleJson.forEach(function (item,index){
             // console.log(recycled[index].quantity)
-           recycled += recycleJson[index].quantity
+        //    recycled += recycleJson[index].quantity
+        recycleNumber += recycleJson[index].quantity
+
         })
-        return res.status(200).json({ donations, recycled })
+        // return res.status(200).json({ donations, recycled })
+        return res.status(200).json({ donationNumber, recycleNumber })
+
     } catch (error) {
         console.log(error)
         next(error)
@@ -42,7 +49,7 @@ router.get("/donations", security.requireAuthenticatedUser, async(req,res,next)=
  
 })
 
-router.post("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
+router.post("/addPic", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
         const user = res.locals.user
         console.log(user)

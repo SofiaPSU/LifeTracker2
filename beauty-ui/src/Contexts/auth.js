@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children })=>{
     const [donateNumber, setDonateNumber] = useState(0)
     const [recycleNumber, setRecycleNumber]= useState(0)
     const [picture, setPicture] = useState(null)
-    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations,recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture }
+    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture }
 
 
     return (
