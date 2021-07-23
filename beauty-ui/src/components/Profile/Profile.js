@@ -9,6 +9,8 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber})
     console.log(user.profile_pic)
     const navigate = useNavigate()
     
+
+
     const handleOnLogout = async ()=>{
         await logoutUser()
         navigate("/")
@@ -28,7 +30,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber})
             <div className="info">
             <div className="avatar">
                 {user.profile_pic?(
-                    <Avatar src={user.profile_pic} style={{ height: '100px', width: '100px' }}>hello</Avatar>
+                    <Avatar src={user.profile_pic} style={{ height: '100px', width: '100px' }}></Avatar>
                     ):(
                 <Avatar style={{ height: '100px', width: '100px' }} src="/broken-image.jpg"></Avatar>)
                     }

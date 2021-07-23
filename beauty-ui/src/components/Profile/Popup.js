@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import StateTextFields from './TextArea';
+import { useModalForm } from '../../hooks/useModalForm'; 
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleModal() {
   const classes = useStyles();
+  const {handleOnChange, handleOnSubmit, errors, isProcessing, form, setForm} = useModalForm()
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -46,7 +48,7 @@ export default function SimpleModal() {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Please Enter Picture Url</h2>
-      <StateTextFields />
+      <StateTextFields handleOnSubmit={handleOnSubmit} form={form} setForm={setForm}/>
     </div>
   );
 

@@ -44,7 +44,7 @@ router.get("/donations", security.requireAuthenticatedUser, async(req,res,next)=
 
 router.post("/profile", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
-        const {user} = res.locals.user
+        const user = res.locals.user
         console.log(user)
         const url = await Profile.addPic({user,url: req.body})
         return res.status(200).json({ url })

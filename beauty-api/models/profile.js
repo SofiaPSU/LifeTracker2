@@ -61,7 +61,7 @@ class Profile{
         const query = `
         UPDATE users SET
             profile_pic = $1
-        WHERE username= $2;)`
+        WHERE username= $2;`
         const result = await db.query(query, [url.profile_pic, user.username])
         const profile = result.rows[0]
         return profile

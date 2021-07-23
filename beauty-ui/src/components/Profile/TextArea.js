@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box } from '@material-ui/core';
+import apiClient from '../../services/apiClient';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -11,27 +12,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StateTextFields() {
+export default function StateTextFields( {handleOnSubmit, form, setForm}) {
   const classes = useStyles();
-  const [text, setText] = React.useState('');
+ 
+  //const [text, setText] = useState("");
   const handleChange = (event) => {
-    setText(event.target.value);
+    setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
   };
-
+  // const handlePicBtn = async ()=>{
+  //   const {data, error} = await apiClient.addPic({
+  //     profile_pic: text.profile_pic
+  //   })
+   
+  
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
+        name="profile_pic"
           id="outlined-name"
           label="Url"
-          value={text}
+          value={form.profile_pic}
           onChange={handleChange}
           variant="outlined"
         />
         
       </div>
       
-      <Button ><Box border={1} borderColor="black">Submit</Box></Button>
+      <Button ><Box border={1} borderColor="black" onClick={handleOnSubmit}>Submit</Box></Button>
       
     </form>
   );
