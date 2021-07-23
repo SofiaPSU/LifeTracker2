@@ -3,9 +3,7 @@ import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
-import apiClient from "../../services/apiClient"
-import { useEffect, useState } from "react"
-
+import SimpleModal from "./Popup"
 
 export default function Profile({user, logoutUser, donate, recycle}) {
     console.log(user.profile_pic)
@@ -42,14 +40,14 @@ export default function Profile({user, logoutUser, donate, recycle}) {
                 <h2 className="text">{user.email}</h2>
                 
                 {!user.profile_pic?(<>
-                    <Button className="text" onClick={handleOnClick}>Settings</Button>
+                    <Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                     <br/><br/>
-                    <Button className="text" >Add Profile Picture</Button>
+                    <SimpleModal />
                     <br/><br/>
-                    <Button className="text" onClick={handleOnLogout}>Log Out</Button></>
-                ) :(<><Button className="text" onClick={handleOnClick}>Settings</Button>
+                    <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>
+                ) :(<><Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                 <br/><br/>
-                <Button className="text" onClick={handleOnLogout}>Log Out</Button></>)}
+                <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>)}
                 
                 </div>
                 </div>
