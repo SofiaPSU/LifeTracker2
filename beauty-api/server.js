@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth")
 const giveRoutes = require("./routes/givings")
 const security = require("./middleware/security")
 const profileRoutes = require("./routes/profile")
+const settings = require("./routes/settings")
 
 
 //added by Kelsey
@@ -32,6 +33,9 @@ app.use("/profile", profileRoutes)
 app.use("/profile/donations", profileRoutes)
 //Obehi -Profile Recycle page
 app.use("/profile/recycles", profileRoutes)
+
+app.use("/settings", settings)
+
 
 
 app.get("/", async (req, res, next) => {

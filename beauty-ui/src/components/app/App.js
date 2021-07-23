@@ -12,6 +12,7 @@ import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
 import { useEffect } from "react";
 import Profile from "../Profile/Profile";
+import Settings from "../Profile/Settings";
 import UserDonations from "../View/donations";
 import UserRecycles from "../View/recycles";
 
@@ -133,6 +134,9 @@ const App = ()=> {
                                                                                     recycles={recycles} 
                                                                                     recycle={recycle}
                                                                                     /> } />
+
+                    <Route path="/profile/settings" element={ <Settings user={user}/>}/>
+
                 </Routes>
             </BrowserRouter>
         </div>
