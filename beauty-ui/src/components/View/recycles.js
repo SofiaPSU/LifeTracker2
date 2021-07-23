@@ -50,36 +50,36 @@ const useStyles = makeStyles((theme) => ({
     }
 
     const classes = useStyles();
-   //console.log(donations)
+  
     // return(
-    //     <div className="Donations">
+    //     <div className="Recycles">
     //          <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
-    //             <Grid container className="usersDonations">
+    //             <Grid container className="usersRecycles">
                    
     //                 <Grid container className={classes.title} >
-    //                     <h2>Total Donated Products: {donate}</h2>
+    //                     <h2>Total Donated Products: {recycle}</h2>
     //                     <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
-    //                         View Recycled
+    //                         View Donated
     //                     </Button>
                         
     //                 </Grid>
                     
     //                 <Grid container className={classes.feed}>
-    //                     {donations.map((donation) => {
+    //                     {recycles.map((recycle) => {
     //                         // console.log(donation)
     //                     // console.log(donations[donation].product_pic) 
     //                         return ( 
-    //                             <Card className={classes.root} key={donation.id} >
+    //                             <Card className={classes.root} key={recycle.id} >
                                         
     //                                     <CardMedia 
     //                                     className={classes.media}
-    //                                     image={donation.product_pic}
+    //                                     image={recycle.product_pic}
     //                                     title="Donation"
     //                                     />
                                         
     //                                     <CardContent>
     //                                         <Typography variant="body1" color="textSecondary" component="p">
-    //                                            Product: {donation.product_type} 
+    //                                            Product: {recycle.product_type} 
     //                                         </Typography>
 
     //                                         <Typography variant="body1" color="textSecondary" component="p">
