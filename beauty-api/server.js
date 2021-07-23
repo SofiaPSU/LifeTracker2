@@ -28,7 +28,7 @@ app.use("/auth", authRoutes)
 //Obehi - Give Page
 app.use("/give", giveRoutes)
 //Sofia - Profile page
-app.use("/profile", profileRoutes)
+app.use("/", profileRoutes)
 //Obehi -Profile Donate page
 app.use("/profile/donations", profileRoutes)
 //Obehi -Profile Recycle page

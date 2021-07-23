@@ -3,14 +3,14 @@ import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
-import apiClient from "../../services/apiClient"
-import { useEffect, useState } from "react"
+import SimpleModal from "./Popup"
 
-
-export default function Profile({user, logoutUser, donate, recycle}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber}) {
     console.log(user.profile_pic)
     const navigate = useNavigate()
     
+
+
     const handleOnLogout = async ()=>{
         await logoutUser()
         navigate("/")
@@ -30,7 +30,7 @@ export default function Profile({user, logoutUser, donate, recycle}) {
             <div className="info">
             <div className="avatar">
                 {user.profile_pic?(
-                    <Avatar src={user.profile_pic} style={{ height: '100px', width: '100px' }}>hello</Avatar>
+                    <Avatar src={user.profile_pic} style={{ height: '100px', width: '100px' }}></Avatar>
                     ):(
                 <Avatar style={{ height: '100px', width: '100px' }} src="/broken-image.jpg"></Avatar>)
                     }
@@ -42,14 +42,14 @@ export default function Profile({user, logoutUser, donate, recycle}) {
                 <h2 className="text">{user.email}</h2>
                 
                 {!user.profile_pic?(<>
-                    <Button className="text" onClick={handleOnClick}>Settings</Button>
+                    <Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                     <br/><br/>
-                    <Button className="text" >Add Profile Picture</Button>
+                    <SimpleModal />
                     <br/><br/>
-                    <Button className="text" onClick={handleOnLogout}>Log Out</Button></>
-                ) :(<><Button className="text" onClick={handleOnClick}>Settings</Button>
+                    <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>
+                ) :(<><Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                 <br/><br/>
-                <Button className="text" onClick={handleOnLogout}>Log Out</Button></>)}
+                <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>)}
                 
                 </div>
                 </div>
@@ -61,14 +61,14 @@ export default function Profile({user, logoutUser, donate, recycle}) {
             <div className="row">
             <div className="donations">
                 <Box border={1} borderColor='#2EC486'>
-                    <h2 className="number">{donate}</h2>
+                    <h2 className="number">{donateNumber}</h2>
                 <h2 className="text">Products Donated!</h2>
                 <Button className="text" onClick={goToDonations}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
             </div>
             <div className="recycled">
                 <Box border={1} borderColor='#2EC486'>
-                <h2 className="number">{recycle}</h2>
+                <h2 className="number">{recycleNumber}</h2>
                 <h2 className="text" >Products Recycled!</h2>
                 <Button className="text" onClick={goToRecycled}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
