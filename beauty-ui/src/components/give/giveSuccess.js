@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import CurrentLocation from '../give/map';
+import { Typography } from '@material-ui/core';
 
 const mapStyles = {
-  width: '90%',
-  height: "40%"
+  width: '100%',
+  height: "40%",
+  zoom: { lat: 40.7640954, lng: -122.2419132 },
 };
 
 // export default function GiveSuccess(){
@@ -32,9 +34,8 @@ export class MapContainer extends Component {
       });
     }
   };
-
   render() {
-    
+  
     return (
     <div>
       <h1 className="title">
@@ -43,6 +44,7 @@ export class MapContainer extends Component {
       <h2 className="subtitle">
         Here are the nearest drop off centers:
       </h2>
+      <div className="googleMap">
       <Map
         google={this.props.google}
         zoom={12}
@@ -104,6 +106,7 @@ export class MapContainer extends Component {
         </InfoWindow> */}
       {/* </CurrentLocation> */}
       </Map>
+      </div>
       </div>
     );
   }

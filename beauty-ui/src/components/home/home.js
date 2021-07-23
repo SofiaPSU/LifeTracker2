@@ -2,7 +2,7 @@ import './home.css';
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles, Grid } from "@material-ui/core"
+import { Box, Typography, makeStyles, Grid, Link} from "@material-ui/core"
 //import Container from '@material-ui/core/Container';
 
 //for grids
@@ -208,7 +208,10 @@ export default function Home() {
             Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
         </Typography>
         <Button variant="contained" color="default" className={classes.registerBTN}>
-            Register
+
+            <a href="/register">
+                Register
+            </a>
         </Button>
     </Box>
 
