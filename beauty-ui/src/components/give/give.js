@@ -82,20 +82,18 @@ const AntSwitch = withStyles((theme) => ({
 }))(Switch);
 
 
-export default function Give({ user,setUser }){
+export default function Give({ user,setUser, setDonation, setDonations }){
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
-    const [toggle,setToggle]=useState(false)
-    // const [state, setState] = useState({
-    //   checkedC: false
-      
-    // });
+    const [createdAt, setCreatedAt] = useState({})
+    const [toggle, setToggle]=useState(false)
+    
 
     const [form, setForm] = useState({
         product_type:"",
         quantity:"",
-        is_used:"",
+        is_used:toggle,
         zip_code:"",
         product_pic:"",
       })
@@ -143,46 +141,28 @@ export default function Give({ user,setUser }){
             zip_code: form.zip_code,
             product_pic: form.product_pic
       })
+     
       if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
-    //?.user
+   
       if(data){
-        setUser(data.user)
-        apiClient.setToken(data.token)
+        setDonation(d=>{
+          // console.log(d)
+          // console.log(data)
+          // console.log(form.quantity)
+        return  d + data.givings.quantity})
+
+        setDonations(donations=>[...donations, data.givings])
       }
+
       setIsProcessing(false)
 
-    //   try {
-    //       const res = await axios.post("http://localhost:3001/give/", {
-    //         product_type: form.product_type,
-    //         quantity: form.quantity,
-    //         is_used: form.is_used,
-    //         zip_code: form.zip_code,
-    //         product_pic: form.product_pic,
-    //       })
-    //       if (res?.data?.user) {
-    //         setUser(res.data.user)
-    //       } else {
-    //         setErrors((e) => ({ ...e, form: "Something went wrong with the giving submission" }))
-    //       }
-    //     } catch (err) {
-    //       console.log(err)
-    //       const message = err?.response?.data?.error?.message
-    //       setErrors((e) => ({ ...e, form: message ?? String(err) }))
-    //     } finally {
-    //       setIsProcessing(false)
-    //     }
-      
-    //   console.log(form)
-    navigate("/give/giveSuccess")
-      console.log(form)
+
+     navigate("/give/giveSuccess")
+    
      }
     
-      
-    
-    
-    
-      
-    const classes = useStyles();
+ 
+  const classes = useStyles();
   
     
     return(
@@ -199,7 +179,7 @@ export default function Give({ user,setUser }){
             </div>
             
             <Grid container  spacing={2} className="feedArea">
-            {/* className="feedArea" */}
+      
               <Grid item xs={6} sm={6} md={6} className={classes.image}>
                 {/* <img className="givePicture"  src = "https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup"></img> */}
 
@@ -271,11 +251,7 @@ export default function Give({ user,setUser }){
                   <Grid item>No</Grid>
                   <Grid item>
                     <FormControlLabel
-                    // name="top"
-                  // value={form.is_used}
                     control={<AntSwitch  onChange={handleChange} name="is_used" onClick={toggler} value={form.is_used}/> }
-                    //value={form.is_used}
-                    //name="checkedC"
                     
                     label="Used"
                     labelPlacement="top"
@@ -284,7 +260,6 @@ export default function Give({ user,setUser }){
                   </Grid>
                   <Grid item >Yes</Grid>
                 </Grid>
-              {/* </Typography> */}
             </FormControl>    
       
             <Button

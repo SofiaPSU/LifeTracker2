@@ -31,7 +31,7 @@ class Giving{
                       product_pic,
                       user_id;
             `, 
-            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.zip_code, newGiving.product_pic, user.username]
+            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.zip_code, newGiving.product_pic || "https://images.unsplash.com/photo-1550630997-c46a95b7c1b3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cGxhc3RpYyUyMGJvdHRsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", user.username]
             )
         
             return results.rows[0]

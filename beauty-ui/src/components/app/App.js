@@ -69,7 +69,7 @@ const App = ()=> {
              setRecycled(data.recycled)
         }
       ProfileApp()
-        }, [])
+        }, [setDonation, setRecycled])
 
       const clearAppState = () => {
         console.log("function is invoking")
@@ -88,7 +88,7 @@ const App = ()=> {
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
-                    <Route path="/give" element={ <Give user={user} setUser={setUser} /> }/>
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonation={setDonation} setDonations={setDonations}/> }/>
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
                     <Route path="/" element={ <Home /> }/>
@@ -98,7 +98,9 @@ const App = ()=> {
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
-                                                                donations={donations} /> } />
+                                                                //setDonations={setDonations}
+                                                                donations={donations} 
+                                                                /> } />
                 </Routes>
             </BrowserRouter>
         </div>
