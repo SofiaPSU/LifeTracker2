@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import ApiClient from "../../services/apiClient";
+
 import { Grid, Card, Container, CardMedia, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,17 +17,18 @@ const useStyles = makeStyles((theme) => ({
      paddingBottom: '5%',
     },
     feed: {
-     justifyContent:"space-between",
+     justifyContent:"flex-start",
      alignContent:"space-evenly",
      gridRowGap:'4rem' ,
+     gridColumnGap: '2rem',
 
     },
     card: {
         borderColor:"primary.main"
     },
     media: {
-      height: 20,
-      width: 300,
+      height: '8%',
+      width: '100%',
       paddingTop: '56.25%', // 16:9
     },
     timestamp: {
@@ -37,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function UserDonations({ donations }){
-    const classes = useStyles();
 
+    const classes = useStyles();
+   console.log(donations)
     return(
         <div className="Donations">
              <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
