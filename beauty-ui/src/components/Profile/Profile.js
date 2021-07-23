@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import SimpleModal from "./Popup"
 
-export default function Profile({user, logoutUser, donate, recycle}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber}) {
     console.log(user.profile_pic)
     const navigate = useNavigate()
     
@@ -59,14 +59,14 @@ export default function Profile({user, logoutUser, donate, recycle}) {
             <div className="row">
             <div className="donations">
                 <Box border={1} borderColor='#2EC486'>
-                    <h2 className="number">{donate}</h2>
+                    <h2 className="number">{donateNumber}</h2>
                 <h2 className="text">Products Donated!</h2>
                 <Button className="text" onClick={goToDonations}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>
             </div>
             <div className="recycled">
                 <Box border={1} borderColor='#2EC486'>
-                <h2 className="number">{recycle}</h2>
+                <h2 className="number">{recycleNumber}</h2>
                 <h2 className="text" >Products Recycled!</h2>
                 <Button className="text" onClick={goToRecycled}><Box className= "box" border={1}>View Products</Box></Button>
                 </Box>

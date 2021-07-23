@@ -38,7 +38,9 @@ class Profile{
                             id, 
                             user_id, 
                             product_pic, 
-                            product_type 
+                            product_type,
+                             quantity,
+                            created_at
                        FROM give 
                        WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = false
                        `
