@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button"
 import {  Container} from "@material-ui/core"
 import StyledMenu from "../Menu/Menu"
 
-export default function Navbar({ user, logoutUser }){
+export default function Navbar({ user, logoutUser, isAuthenticated }){
 
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '5vh'}}>

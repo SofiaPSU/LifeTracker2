@@ -82,11 +82,11 @@ const AntSwitch = withStyles((theme) => ({
 }))(Switch);
 
 
-export default function Give({ user,setUser, setDonation, setDonations }){
+export default function Give({ user,setUser, setDonation, setDonations, setRecycled, setRecycles, initialized }){
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
-    const [createdAt, setCreatedAt] = useState({})
+   // const [createdAt, setCreatedAt] = useState("")
     const [toggle, setToggle]=useState(false)
     
 
@@ -104,11 +104,11 @@ export default function Give({ user,setUser, setDonation, setDonations }){
         if (user?.email) {
           navigate("/give/")
         }
-        else if(!user?.email){
+        else if(!user?.email && initialized){
           
           navigate("/give/giveUnauthorized")
         }
-      }, [user, navigate])
+      }, [user, navigate, initialized])
 
     const handleOnInputChange = (event) => {
         
@@ -151,7 +151,18 @@ export default function Give({ user,setUser, setDonation, setDonations }){
           // console.log(form.quantity)
         return  d + data.givings.quantity})
 
+        setRecycled(r=>{
+          // console.log(d)
+          // console.log(data)
+          // console.log(form.quantity)
+        return  r + data.givings.quantity})
+
+
+
+       // console.log(data.givings.product_type)
+        console.log(data.givings.created_at)
         setDonations(donations=>[...donations, data.givings])
+        setRecycles(recycles=>[...recycles, data.givings])
       }
 
       setIsProcessing(false)

@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import Profile from "../Profile/Profile";
 import Settings from "../Profile/Settings";
 import UserDonations from "../View/donations";
+import UserRecycles from "../View/recycles";
 
 
 export default function AppContainer(){
@@ -25,7 +26,7 @@ export default function AppContainer(){
 }
 
 const App = ()=> {
-    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError, donate, setDonation, recycle, setRecycled} = useAuthContext()
+    const {user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donate, setDonation, recycle, setRecycled} = useAuthContext()
     
     
     const isAuthenticated = Boolean(initialized && user?.email)
@@ -55,6 +56,7 @@ const App = ()=> {
           if (data?.donations) {
             //console.log(data.donations)
             setDonations(data.donations)
+            console.log(data.donations[0].created_at)
           }
         }
         
@@ -62,12 +64,33 @@ const App = ()=> {
       }, [])
 
       useEffect(() => {
+        const fetchRecycles = async () => {
+          const { data, error } = await apiClient.fetchRecycles()
+          if (error) setError(error)
+          if (data?.donations) {
+            //console.log(data.donations)
+            setRecycles(data.recycles)
+           // console.log(data.donations[0].created_at)
+          }
+        }
+        
+        fetchRecycles()
+      }, [])
+
+
+
+
+
+
+
+
+      useEffect(() => {
         
         const ProfileApp = async () => {
             const { data } = await apiClient.fetchNumberDonationsRecycled()
             if (data)  
              setDonation(data.donations)
-             setRecycled(data.recycled)
+             setRecycled(data.recycles)
         }
       ProfileApp()
         }, [setDonation, setRecycled])
@@ -89,7 +112,7 @@ const App = ()=> {
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
-                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonation={setDonation} setDonations={setDonations}/> }/>
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonation={setDonation} setDonations={setDonations} setRecycled={setRecycled} setRecycles={setRecycles}    initialized={initialized}/> }/>
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
                     <Route path="/" element={ <Home /> }/>
@@ -99,9 +122,20 @@ const App = ()=> {
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
-                                                donations={donations} /> } />
-                    <Route path="/profile/settings" element={ <Settings user={user}/>}/>
+                                                                //setDonations={setDonations}
+                                                                donations={donations} 
+                                                                donate={donate}
+                                                                /> } />
 
+                    <Route path="/profile/recycles" element={ <UserRecycles
+                                                                                    user={user} 
+                                                                                    setUser={setUser}
+                                                                                    //setDonations={setDonations}
+                                                                                    recycles={recycles} 
+                                                                                    recycle={recycle}
+                                                                                    /> } />
+
+                    <Route path="/profile/settings" element={ <Settings user={user}/>}/>
 
                 </Routes>
             </BrowserRouter>

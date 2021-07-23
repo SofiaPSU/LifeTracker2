@@ -56,6 +56,10 @@ class ApiClient {
     return await this.request({ endpoint: `profile/donations`, method:`GET` })
   }
 
+  async fetchRecycles(){
+    return await this.request({ endpoint: `profile/recycles`, method:`GET` })
+  }
+
   async fetchNumberDonationsRecycled(){
     return await this.request({ endpoint:`profile`, method:`GET` })
   }

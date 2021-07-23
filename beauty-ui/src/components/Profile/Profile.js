@@ -22,7 +22,7 @@ export default function Profile({user, logoutUser, donate, recycle}) {
         navigate("/profile/donations")
     }
     const goToRecycled = ()=>{
-        navigate("/recycled")
+        navigate("/profile/recycles")
     }
 
     return (
