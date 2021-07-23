@@ -22,7 +22,7 @@ CREATE TABLE give (
   quantity   INTEGER NOT NULL,
   is_used    BOOLEAN NOT NULL DEFAULT FALSE,
   zip_code   INTEGER NOT NULL,
-  product_pic TEXT NOT NULL,
+  product_pic TEXT,
   created_at  TIMESTAMP NOT NULL DEFAULT NOW()
 );
 

@@ -25,7 +25,7 @@ export default function AppContainer(){
 }
 
 const App = ()=> {
-    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError} = useAuthContext()
+    const {user, setUser, initialized, setInitialized, donations, setDonations, error, setError, donate, setDonation, recycle, setRecycled} = useAuthContext()
     
     
     const isAuthenticated = Boolean(initialized && user?.email)
@@ -61,6 +61,16 @@ const App = ()=> {
         fetchDonations()
       }, [])
 
+      useEffect(() => {
+        
+        const ProfileApp = async () => {
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+            if (data)  
+             setDonation(data.donations)
+             setRecycled(data.recycled)
+        }
+      ProfileApp()
+        }, [setDonation, setRecycled])
 
       const clearAppState = () => {
         console.log("function is invoking")
@@ -79,18 +89,19 @@ const App = ()=> {
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
-                    <Route path="/give" element={ <Give user={user} setUser={setUser} /> }/>
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonation={setDonation} setDonations={setDonations}/> }/>
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donate={donate} recycle={recycle}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
-                                                                donations={donations} /> } />
+                                                donations={donations} /> } />
                     <Route path="/profile/settings" element={ <Settings user={user}/>}/>
+
 
                 </Routes>
             </BrowserRouter>
