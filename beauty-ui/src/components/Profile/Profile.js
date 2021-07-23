@@ -16,13 +16,13 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber})
         navigate("/")
     }
     const handleOnClick =  () =>{
-        navigate("/settings")
+        navigate("/profile/settings")
     }
     const goToDonations = ()=>{
         navigate("/profile/donations")
     }
     const goToRecycled = ()=>{
-        navigate("/recycled")
+        navigate("/profile/recycles")
     }
 
     return (
@@ -75,7 +75,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber})
                 </div>
            
             </div>
-           
+        
         </div>
     )
 }

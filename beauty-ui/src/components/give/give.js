@@ -82,11 +82,13 @@ const AntSwitch = withStyles((theme) => ({
 }))(Switch);
 
 
-export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber }){
+
+export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized}){
+
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
-    const [createdAt, setCreatedAt] = useState({})
+   // const [createdAt, setCreatedAt] = useState("")
     const [toggle, setToggle]=useState(false)
     
 
@@ -104,11 +106,11 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
         if (user?.email) {
           navigate("/give/")
         }
-        else if(!user?.email){
+        else if(!user?.email && initialized){
           
           navigate("/give/giveUnauthorized")
         }
-      }, [user, navigate])
+      }, [user, navigate, initialized])
 
     const handleOnInputChange = (event) => {
         
@@ -152,16 +154,21 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
           // console.log(data)
           // console.log(form.quantity)
         return  d + data.givings.quantity})
-      }
-        else if (data.is_used === true){
-          console.log(data)
-          setRecycleNumber(d=>{
-          
-            // console.log(d)
-            // console.log(data)
-            // console.log(form.quantity)
-          return  d + data.givings.quantity})
-      setDonations(donations=>[...donations, data.givings])
+
+
+        setRecycleNumber(r=>{
+          // console.log(d)
+          // console.log(data)
+          // console.log(form.quantity)
+        return  r + data.givings.quantity})
+
+
+
+       // console.log(data.givings.product_type)
+        console.log(data.givings.created_at)
+        setDonations(donations=>[...donations, data.givings])
+        setRecycles(recycles=>[...recycles, data.givings])
+
       }
 
       setIsProcessing(false)

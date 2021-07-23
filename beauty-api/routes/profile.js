@@ -54,11 +54,19 @@ router.post("/profile", security.requireAuthenticatedUser, async (req, res, next
 })
 
 //Obehi: This gets the recycling entries of the user
-// router.get("/profile/recycles", security, security.requireAuthenticatedUser, async(req,res,next)=>{
-//     const user = res.locals.user
-
+router.get("/recycles", security.requireAuthenticatedUser, async(req,res,next)=>{
+    try{
+        const user = res.locals.user
+        console.log(user)
+        const recycles = await Profile.fetchRecycles({ user })
+        console.log(recycles)
+        return res.status(200).json({ recycles })
+    }catch(error){
+        console.log(error)
+        next(error)
+    }
     
-// })
+})
 
 
 

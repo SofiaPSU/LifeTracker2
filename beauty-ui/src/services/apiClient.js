@@ -32,13 +32,16 @@ class ApiClient {
     }
   }
 
- 
   async fetchUserFromToken() {
     return await this.request({ endpoint: `auth/me`, method: `GET` })
   }
 
   async signupUser(credentials) {
     return await this.request({ endpoint: `auth/register`, method: `POST`, data: credentials })
+  }
+
+  async updateUser(settings) {
+    return await this.request({ endpoint: `settings`, method: `POST`, data: settings })
   }
 
   async loginUser(credentials) {
@@ -51,6 +54,10 @@ class ApiClient {
   
   async fetchDonations(){
     return await this.request({ endpoint: `profile/donations`, method:`GET` })
+  }
+
+  async fetchRecycles(){
+    return await this.request({ endpoint: `profile/recycles`, method:`GET` })
   }
 
   async fetchNumberDonationsRecycled(){
