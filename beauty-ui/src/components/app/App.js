@@ -12,6 +12,7 @@ import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
 import { useEffect } from "react";
 import Profile from "../Profile/Profile";
+import Settings from "../Profile/Settings";
 import UserDonations from "../View/donations";
 import UserRecycles from "../View/recycles";
 
@@ -25,7 +26,9 @@ export default function AppContainer(){
 }
 
 const App = ()=> {
-    const {user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donate, setDonation, recycle, setRecycled} = useAuthContext()
+
+    const {user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber} = useAuthContext()
+
     
     
     const isAuthenticated = Boolean(initialized && user?.email)
@@ -87,12 +90,15 @@ const App = ()=> {
         
         const ProfileApp = async () => {
             const { data } = await apiClient.fetchNumberDonationsRecycled()
-            if (data)  
-             setDonation(data.donations)
-             setRecycled(data.recycles)
+
+            if (data)  {
+            setRecycleNumber(data.recycles)
+             setDonateNumber(data.donations)}
+             
+
         }
       ProfileApp()
-        }, [setDonation, setRecycled])
+        }, [setDonateNumber, setRecycleNumber])
 
       const clearAppState = () => {
         console.log("function is invoking")
@@ -111,13 +117,15 @@ const App = ()=> {
                 <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
-                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonation={setDonation} setDonations={setDonations} setRecycled={setRecycled} setRecycles={setRecycles}    initialized={initialized}/> }/>
+
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} setDonations={setDonations} setRecycles={setRecycles} initialized={initialized}/> }/>
+
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donate={donate} recycle={recycle}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
@@ -133,6 +141,9 @@ const App = ()=> {
                                                                                     recycles={recycles} 
                                                                                     recycle={recycle}
                                                                                     /> } />
+
+                    <Route path="/profile/settings" element={ <Settings user={user}/>}/>
+
                 </Routes>
             </BrowserRouter>
         </div>

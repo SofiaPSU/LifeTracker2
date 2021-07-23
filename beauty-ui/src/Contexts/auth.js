@@ -8,10 +8,13 @@ export const AuthContextProvider = ({ children })=>{
     const [donations, setDonations] = useState([])
     const [recycles, setRecycles] = useState([])
     const [error, setError] = useState(null)
-    const [donate, setDonation] = useState(0)
-    const [recycle, setRecycled]= useState([])
-    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donate, setDonation, recycle, setRecycled }
-//console.log(donate)
+
+    const [donateNumber, setDonateNumber] = useState(0)
+    const [recycleNumber, setRecycleNumber]= useState(0)
+    const [picture, setPicture] = useState(null)
+    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations,recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture }
+
+
     return (
         <AuthContext.Provider value={authValue}>
         <>{children}</>

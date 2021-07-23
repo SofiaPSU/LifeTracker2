@@ -82,7 +82,9 @@ const AntSwitch = withStyles((theme) => ({
 }))(Switch);
 
 
-export default function Give({ user,setUser, setDonation, setDonations, setRecycled, setRecycles, initialized }){
+
+export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized}){
+
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [errors, setErrors] = useState({})
@@ -144,14 +146,17 @@ export default function Give({ user,setUser, setDonation, setDonations, setRecyc
      
       if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
    
-      if(data){
-        setDonation(d=>{
+      if(data.is_used === false){
+        console.log(data)
+        setDonateNumber(d=>{
+        
           // console.log(d)
           // console.log(data)
           // console.log(form.quantity)
         return  d + data.givings.quantity})
 
-        setRecycled(r=>{
+
+        setRecycleNumber(r=>{
           // console.log(d)
           // console.log(data)
           // console.log(form.quantity)
@@ -163,6 +168,7 @@ export default function Give({ user,setUser, setDonation, setDonations, setRecyc
         console.log(data.givings.created_at)
         setDonations(donations=>[...donations, data.givings])
         setRecycles(recycles=>[...recycles, data.givings])
+
       }
 
       setIsProcessing(false)

@@ -32,13 +32,16 @@ class ApiClient {
     }
   }
 
- 
   async fetchUserFromToken() {
     return await this.request({ endpoint: `auth/me`, method: `GET` })
   }
 
   async signupUser(credentials) {
     return await this.request({ endpoint: `auth/register`, method: `POST`, data: credentials })
+  }
+
+  async updateUser(settings) {
+    return await this.request({ endpoint: `settings`, method: `POST`, data: settings })
   }
 
   async loginUser(credentials) {
@@ -60,6 +63,10 @@ class ApiClient {
   async fetchNumberDonationsRecycled(){
     return await this.request({ endpoint:`profile`, method:`GET` })
   }
+  async addPic(pic) {
+    return await this.request({ endpoint: `profile`, method: `POST`, data: pic })
+  }
+  
   async logoutUser() {
     console.log("user is logged out")
     this.setToken(null)

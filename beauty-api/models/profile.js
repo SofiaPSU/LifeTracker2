@@ -22,9 +22,7 @@ class Profile{
         const query =`SELECT quantity FROM give WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = true`
         const result = await db.query(query, [user.username])
         const recycled = result.rows
-        //console.log(recycled)
         
-     // recycled.reduce(function(a,b) {return a+b;}, 0)
         return recycled
     }
 
@@ -34,6 +32,7 @@ class Profile{
         if(!user){
             throw new BadRequestError("No authentication recognized")
         }
+        
         const query = `
                        SELECT 
                             id, 
@@ -49,6 +48,26 @@ class Profile{
         const donations = results.rows
         return donations
     }
+
+    static async addPic({ user, url }){
+        if(!user){
+            throw new BadRequestError("No authentication recognized")
+        }
+        const requiredFields = ["profile_pic"]
+        requiredFields.forEach(field =>{
+            if(!url.hasOwnProperty(field)){
+                throw new BadRequestError(`Missing ${field} in request body`)
+            }
+        })
+        const query = `
+        UPDATE users SET
+            profile_pic = $1
+        WHERE username= $2;`
+        const result = await db.query(query, [url.profile_pic, user.username])
+        const profile = result.rows[0]
+        return profile
+}
+
 
     //need to get all of user's recycles
     static async fetchRecycles({ user }){
@@ -70,6 +89,7 @@ class Profile{
         const recycles = results.rows
         return recycles
     }
+
 
 
 
