@@ -4,8 +4,11 @@ import Avatar from '@material-ui/core/Avatar'
 import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import SimpleModal from "./Popup"
+import { Link } from "react-router-dom"
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber}) {
+    setDonateNumber(donateNumber)
+    setRecycleNumber(recycleNumber)
     console.log(user.profile_pic)
     const navigate = useNavigate()
     
@@ -51,17 +54,16 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber})
                         ) :(<><Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                         <br/><br/>
                         <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>)}
-                    
                 </div>
             </div>
            
             <div className="welcome">
                 <h1 className="welcome">Welcome, {user.first_name}!</h1>
             </div>
-                
-               
             <div className="row">
-                
+              <div className="points">
+                  <h2><Link to="/points">Points: {donateNumber + recycleNumber} </Link></h2>
+                </div>
                 <div className="donations">
                     <Box border={1} borderColor='#2EC486'>
                         <h2 className="number">{donateNumber}</h2>
