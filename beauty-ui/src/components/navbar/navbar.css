@@ -17,7 +17,7 @@
     font-family: 'Arima Madurai', cursive ;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 20px;
     
     text-align: center;
     letter-spacing: -0.015em;
@@ -53,6 +53,7 @@ Button{
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
+    padding: 3px 3px;
 
 }
 .register{

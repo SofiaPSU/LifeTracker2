@@ -28,14 +28,14 @@ export default function GiveUnauthorized(){
 
                         <Grid container  justify-content= "center" spacing={2} className="redirectBttns">
                         <Grid item > 
-                            <Button className="login" variant="contained" color="default">
+                            <Button className="login" variant="outlined"  >
                                 <a href="/login">
                                     Log In
                                 </a>
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Button className="register" variant="contained" color="default">
+                            <Button className="register" variant="outlined" >
                                 <a href="/register">
                                     Register
                                 </a>

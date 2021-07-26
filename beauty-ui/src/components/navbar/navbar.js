@@ -34,12 +34,12 @@ export default function Navbar({ user, logoutUser, isAuthenticated }){
                     </li>
                     {user?.id? (
                     <StyledMenu logoutUser={logoutUser}/>
-                    ):(<><Button className="login" variant="contained" size="small">
+                    ):(<><Button className="login" variant="outlined" size='small'>
                         <Link to="/login">
                             Log In
                             </Link>
                     </Button>
-                    <Button className="register" variant="contained" size="small">
+                    <Button className="register" variant="outlined" size='small'>
                         <Link to="/register">
                             Register
                          </Link>

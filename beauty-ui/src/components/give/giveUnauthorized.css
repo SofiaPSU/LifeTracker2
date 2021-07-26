@@ -17,7 +17,7 @@
         font-style: normal;
         font-weight: normal;
         font-size: 45px;
-        line-height: 147px;
+        padding-top:  0px;
         text-align: center;
         letter-spacing: -0.015em;
         
@@ -32,7 +32,7 @@
         font-family: Arima Madurai;
         font-style: normal;
         font-weight: normal;
-        font-size: 24px;
+        font-size: 20px;
         line-height: 39px;
         display: flex;
         align-items: center;
@@ -44,7 +44,7 @@
     }
 
     .giveDescription{
-        padding-bottom: 10%;
+        padding-bottom: 2;
     }
 
     .feedPlace{
@@ -72,9 +72,15 @@
  
     }
 
+    
+
     a{
         text-decoration: none;
         color: black;
+    }
+    
+    .login:hover:hover{
+       background-color:"#cbf3f0";
     }
 
     a:visited{
