@@ -49,7 +49,7 @@ router.get("/donations", security.requireAuthenticatedUser, async(req,res,next)=
  
 })
 
-router.post("/addPic", security.requireAuthenticatedUser, async (req, res, next)=>{
+router.post("/", security.requireAuthenticatedUser, async (req, res, next)=>{
     try {
         const user = res.locals.user
         console.log(user)

@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import StateTextFields from './TextArea';
 import { useModalForm } from '../../hooks/useModalForm'; 
-
+import { Button, Box } from '@material-ui/core';
+import "./Profile.css"
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -47,16 +48,16 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Please Enter Picture Url</h2>
+      <h2 id="simple-modal-title">Please Enter Image Url</h2>
       <StateTextFields handleOnSubmit={handleOnSubmit} form={form} setForm={setForm}/>
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Add Profile Picture
-      </button>
+      <Button type="button" onClick={handleOpen}>
+      <Box className="text" border={1}>  Add Profile Picture</Box>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
