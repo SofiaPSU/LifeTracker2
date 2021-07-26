@@ -2,7 +2,7 @@ import './home.css';
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles, Grid, Link} from "@material-ui/core"
+import { Box, Typography, makeStyles, Grid, Link, Container} from "@material-ui/core"
 //import Container from '@material-ui/core/Container';
 
 //for grids
@@ -13,103 +13,110 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
 
 moisturizerPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1575410229391-19b4da01cc94?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fGZhY2UlMjBtb2lzdHVyaXplcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
     
 },
 cleanserPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1556228720-195a672e8a03?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
         
 },
 serumPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1600180583258-6d9b0c7b782b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnVtc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
+    marginRight:0,
             
 },     
 foundationPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    //  marginLeft: 70,
     padding: 25,
+    
         
 },
 mascaraPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1560725613-4b52e67fc67b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
             
 },
 powderPaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1590156424570-698d124ec7dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHBvd2RlciUyMG1ha2V1cHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
         
 },
 perfumePaper: {
-    height: 550,
-    width: 500,
+    height: 320,
+    width: 250,
     background: `url(https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fHBlcmZ1bWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    marginLeft: 80,
+    // marginLeft: 80,
     padding: 25,
             
 },   
 wrapper: {
-    height: 700,
-    width: '100vw',
+    height: 580,
+    // width: '100vw',
     margin: "auto",
-    background: `url(https://images.unsplash.com/photo-1598412795976-9c195182ee01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1004&q=100)`,
+    background: `url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/packaging-1565375161.png?resize=980:*)`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
+    marginTop:'10px',
+    opacity:'0.8',
 
 },
 title: {
-    fontFamily: "Euclid Circular A",
+    fontFamily: "Arima Madurai",
     fontStyle: "normal",
-    fontWeight: "bold",
-    fontSize: 85,
+    // fontWeight: "bold",
+    fontSize: 55,
+    // marginTop: 20,
+    paddingTop: 100,
     margin: "auto",
     letterSpacing: "-0.015em",
-    color: "#8F5338",
+    color: "#000000",
+    fontWeight:'10'
 
 },
 subtitle: {
-    width: "50%",
+    width: "70%",
     marginLeft: "auto",
     marginRight: "auto",
-    padding: 60,
+    padding: 20,
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 25,
+    fontSize: 20,
     textAlign: "center",
     letterSpacing: "-0.015em",
     color: "#000000",
@@ -117,36 +124,38 @@ subtitle: {
 },
 registerBTN: {
     marginTop: 10, // space between outer edge and adjacent elements 
-    padding: 20, //space between content , outer edge
+    paddingTop:10, //space between content , outer edge
     width: 270,
-    height: 70,
+    // height: 70,
+    marginBottom: 15,
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 25,
     textAlign: "center",
     letterSpacing: "-0.015em",
-    background: "#96583C",
+    background: "#cbf3f0",
     color: "#FFFFFF",
 
 },
 bottom: {
     display: "Flex",
-    width: '100vw',
-    padding: 60,
+    // width: '100vw',
+    padding: 40,
+    marginTop: 5,
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 25,
+    fontSize: 20,
     textAlign: "center",
     letterSpacing: "-0.015em",
-    color: "#FFFFFF",
-    background: "#5C625E",
+    color: "#000000",
+    background: "#cbf3f0",
 
 },
 
 skincare: {
-    fontFamily: "Euclid Circular A",
+    fontFamily: "Arima Madurai",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 40,
@@ -155,8 +164,8 @@ skincare: {
     textAlign: "justify",
     marginTop: 60,
     marginBottom: 20,
-    marginLeft: 80,
-    color: "#96583C",
+    // marginLeft: 80,
+    color: "#00000",
 
 },
 
@@ -164,8 +173,9 @@ productTitle: {
     fontFamily: "Euclid Circular A",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize: 25,
-    marginLeft: 80,
+    fontSize: 20,
+    // marginLeft: 80,
+    marginTop: 8,
     textAlign: "center",
     letterSpacing: "-0.015em",
     color: "#5C625E"
@@ -179,7 +189,7 @@ productSubtitle: {
     fontSize: 20,
     marginTop: 15,
     marginBottom: 10,
-    marginLeft: 80,
+    // marginLeft: 80,
     textAlign: "center",
     letterSpacing: "-0.015em",
     color: "#756F6F;"
@@ -198,7 +208,8 @@ export default function Home() {
   };
 
   return (
-<div>
+
+ <Container maxWidth="lg" minWidth='600px' style={{ backgroundColor: '#ffffff',height: '100vh' }}> 
     
     <Box className={classes.wrapper}>
         <Typography variant="h1" className={classes.title}>
@@ -207,7 +218,7 @@ export default function Home() {
         <Typography variant="body1" className={classes.subtitle}>
             Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
         </Typography>
-        <Button variant="contained" color="default" className={classes.registerBTN}>
+        <Button variant="outlined" color="default" size='medium' className={classes.registerBTN}>
 
             <a href="/register">
                 Register
@@ -228,7 +239,7 @@ export default function Home() {
         <Grid className="skincare-examples">
             <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
-                    <Grid container spacing={spacing}>
+                    <Grid container spacing={10}>
                         {[0].map((value) => (
                             <Grid key={value} item>
                             <Paper className={classes.moisturizerPaper} />
@@ -278,8 +289,8 @@ export default function Home() {
         </Typography>
         <Grid className="makeup-examples">
             <Grid container className={classes.root} spacing={2}>
-                <Grid item>
-                    <Grid container spacing={spacing} >
+                <Grid item xs={12}>
+                    <Grid container spacing={10} >
                     {[0].map((value) => (
                             <Grid key={value} item>
                             <Paper className={classes.powderPaper} />
@@ -337,7 +348,8 @@ export default function Home() {
             </Grid>
         </Grid>
     </Box>
-</div>
+</Container> 
+
 
   );
 }

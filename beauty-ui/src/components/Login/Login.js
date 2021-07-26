@@ -51,7 +51,8 @@ export default function Login() {
   const {form, errors, isProcessing, handleOnChange, handleOnSubmit, showPasswordBox, hide} = useLoginForm()
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="lg" minWidth='600px' style={{ backgroundColor: '#ffffff',height: '100vh' }}>
+    <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <div className={classes.paper}>
         <div ><h1 className="text">
@@ -120,6 +121,7 @@ export default function Login() {
       <Box mt={5}>
         <Copyright />
       </Box>
+    </Container>
     </Container>
   );
 }

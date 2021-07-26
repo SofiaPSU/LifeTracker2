@@ -28,18 +28,21 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    margin: theme.spacing(0, "auto"),
+    marginRight: theme.spacing(5),
+    height:'25rem',
   },
   paper: {
     margin: theme.spacing(1, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    height:'25rem',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     margin: theme.spacing(0, "auto"),
+    height:'25rem',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -190,7 +193,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
     
     return(
       <div className="Give">
-        <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }}>
+        <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }} justify-content="center">
            <div className="giveTitle">
                  <h2>GIVE</h2>
            </div>
@@ -201,18 +204,18 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
                 </p>
             </div>
             
-            <Grid container  spacing={2} className="feedArea">
+            <Grid container  spacing={1} className="feedArea">
       
-              <Grid item xs={6} sm={6} md={6} className={classes.image}>
+              <Grid item xs={3} sm={3} md={4} className={classes.image}>
                 {/* <img className="givePicture"  src = "https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup"></img> */}
 
               </Grid>
 
-              <Grid item xs={4} sm={3} md={4} className="giveForm" component={Paper} elevation={0}>
+              <Grid item xs={3} sm={3} md={4} className="giveForm" component={Paper} elevation={0}>
               <div className={classes.paper}>
-          <Typography component="h3" variant="h3" fontFamily="Arima Madurai">
+          {/* <Typography component="h3" variant="h3" fontFamily="Arima Madurai">
             Give
-          </Typography>
+          </Typography> */}
           
           <form className={classes.form} noValidate>
             <TextField
@@ -290,7 +293,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
              fullWidth
             
               variant="contained"
-              color="default"
+              // color="#ffffff"
               className={classes.submit}
               disabled={isProcessing} 
               onClick={handleOnSubmit}
