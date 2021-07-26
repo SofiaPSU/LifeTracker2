@@ -131,7 +131,7 @@ const App = ()=> {
                     <Route path="/" element={ <Home /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}

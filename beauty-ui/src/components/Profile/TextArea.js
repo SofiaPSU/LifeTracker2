@@ -15,14 +15,16 @@ const useStyles = makeStyles((theme) => ({
 export default function StateTextFields( {handleOnSubmit, form, setForm}) {
   const classes = useStyles();
  
-  //const [text, setText] = useState("");
+  const [text, setText] = useState("");
   const handleChange = (event) => {
-    setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+    setText((f) => ({ ...f, [event.target.name]: event.target.value }))
   };
-  // const handlePicBtn = async ()=>{
-  //   const {data, error} = await apiClient.addPic({
-  //     profile_pic: text.profile_pic
-  //   })
+  const handlePicBtn = async ()=>{
+    const {data, error} = await apiClient.addPic({
+      profile_pic: text.profile_pic
+    })
+    window.location.reload(false)
+  }
    
   
   return (
@@ -32,15 +34,15 @@ export default function StateTextFields( {handleOnSubmit, form, setForm}) {
         name="profile_pic"
           id="outlined-name"
           label="Url"
-          value={form.profile_pic}
+          value={text.profile_pic}
           onChange={handleChange}
           variant="outlined"
         />
         
       </div>
       
-      <Button ><Box border={1} borderColor="black" onClick={handleOnSubmit}>Submit</Box></Button>
+      <Button ><Box border={1} borderColor="black" onClick={handlePicBtn}>Submit</Box></Button>
       
     </form>
-  );
+  )
 }
