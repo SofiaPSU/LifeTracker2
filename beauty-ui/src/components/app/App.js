@@ -31,8 +31,8 @@ const App = ()=> {
     const {user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber} = useAuthContext()
 
     
-    
-    const isAuthenticated = Boolean(initialized && user?.email)
+    //itinnialed by default is false i changed user?.email(true if email is found false if not) to !user?.email(fa)
+    const isAuthenticated = Boolean(initialized && !user?.email)
     
     useEffect(() => {
       document.title="Hīrā"
@@ -121,7 +121,7 @@ const App = ()=> {
     return(
         <div className="App">
             <BrowserRouter>
-                <Navbar user={user} error={error} isAuthenticated={isAuthenticated} logoutUser={logoutUser}/>
+                <Navbar user={user} error={error} isAuthenticated={isAuthenticated} initialized={initialized} logoutUser={logoutUser}/>
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
 
