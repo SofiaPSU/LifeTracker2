@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@500&display=swap');
+
+.text{
+    font-family : 'Arima Madurai', cursive ;
+    display: inline-grid;
+}
+.points {
+    font-family : 'Arima Madurai', cursive ;
+}
+.graph{
+    grid-column: 1;
+    grid-row: 1;
+    padding:2%;
+    height: fit-content;
+}
+.free{
+    grid-column: 2;
+    grid-row: 1;
+    padding:2%;
+    height:max-content;
+}
+.body{
+    padding: 5%;
+}

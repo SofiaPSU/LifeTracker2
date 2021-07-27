@@ -41,10 +41,13 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                
                 <div className="user-info">
                         <h2 className="text">{user.username}</h2>
+                        <br/>
                         <h2 className="text">{user.age}</h2>
+                        <br/>
                         <h2 className="text">{user.zip_code}</h2>
+                        <br/>
                         <h2 className="text">{user.email}</h2>
-                        
+                        <br/>
                         {!user.profile_pic?(<>
                             <Button className="text" onClick={handleOnClick}><Box border={1}>Settings</Box></Button>
                             <br/><br/>
@@ -56,16 +59,16 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                         <Button className="text" onClick={handleOnLogout}><Box border={1}>Log Out</Box></Button></>)}
                 </div>
             </div>
-           
+           <div className="user">
             <div className="welcome">
                 <h1 className="welcome">Welcome, {user.first_name}!</h1>
             </div>
-            <div className="row">
-              <div className="points">
+                <div className="products">
+                <div className="donations">
+                    <div className="points">
                   <h2><Link to="/points">Points: {donateNumber + recycleNumber} </Link></h2>
                 </div>
-                <div className="donations">
-                    <Box border={1} borderColor='#2EC486'>
+                    <Box border={1} borderColor="#2EC4B6">
                         <h2 className="number">{donateNumber}</h2>
                     <h2 className="text">Products Donated!</h2>
                     <Button className="text" onClick={goToDonations}><Box className= "box" border={1}>View Products</Box></Button>
@@ -73,15 +76,17 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                 
                 <div className="recycled">
-                    <Box border={1} borderColor='#2EC486'>
+                <div className="free-products">
+                    <h2><Link to="/points"> Free Products: { Math.round((donateNumber + recycleNumber)/20)} </Link></h2>
+                </div>
+                    <Box border={1} borderColor="#2EC4B6">
                     <h2 className="number">{recycleNumber}</h2>
                     <h2 className="text" >Products Recycled!</h2>
                     <Button className="text" onClick={goToRecycled}><Box className= "box" border={1}>View Products</Box></Button>
                     </Box>
                 </div>
-            
+                </div>
             </div>
-        
-        </div>
+            </div>
     )
 }
