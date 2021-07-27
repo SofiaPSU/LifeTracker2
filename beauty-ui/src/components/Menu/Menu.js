@@ -74,6 +74,7 @@ export default function CustomizedMenus({logoutUser}) {
         onClose={handleClose}
       >
         <StyledMenuItem onClick={handleClose}><Link to="/profile">Profile</Link></StyledMenuItem>
+        <StyledMenuItem onClick={handleClose}><Link to="/points">Points</Link></StyledMenuItem>
         <StyledMenuItem onClick={handleOnLogout}>Logout</StyledMenuItem>
       </StyledMenu>
     </div>

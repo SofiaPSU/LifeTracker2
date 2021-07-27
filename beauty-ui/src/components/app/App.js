@@ -15,6 +15,7 @@ import Profile from "../Profile/Profile";
 import Settings from "../Profile/Settings";
 import UserDonations from "../View/donations";
 import UserRecycles from "../View/recycles";
+import Points from "../Points/Points"
 
 
 export default function AppContainer(){
@@ -149,6 +150,7 @@ const App = ()=> {
                                                                                     /> } />
 
                     <Route path="/profile/settings" element={ <Settings user={user}/>}/>
+                    <Route path="/points" element={<Points donateNumber={donateNumber} recycleNumber={recycleNumber}/>}/>
 
                 </Routes>
             </BrowserRouter>
