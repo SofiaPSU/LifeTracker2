@@ -93,7 +93,7 @@ export default function Settings({user}) {
       <CssBaseline />
       <div className={classes.paper}>
         <h1 className="text">
-          Update Settings
+          Update User Info
         </h1>
         
         <form className={classes.form} noValidate>
@@ -166,9 +166,103 @@ export default function Settings({user}) {
           </Button>
         </form>
       </div>
+      <Box>
+        <h1 className="text">
+          Update Email
+        </h1>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                name="current email"
+                variant="outlined"
+                required
+                fullWidth
+                id="currEmail"
+                label={<span className="text">Current Email</span> }
+                // value={userSettings.email}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                name="new email"
+                variant="outlined"
+                required
+                fullWidth
+                id="newEmail"
+                label={<span className="text">New Email</span> }
+                // value={userSettings.password}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            color="primary"
+            variant="contained"
+            className={classes.submit}
+            onClick={handleOnSubmit}
+          >
+            <div component="h1" variant="button" className="text">
+            Save Updates
+            </div>
+          </Button>
+        </form>
+      
+        <div className={classes.paper}>
+        <h1 className="text">
+          Update Password
+        </h1>
+        
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                name="current password"
+                variant="outlined"
+                required
+                fullWidth
+                id="currPass"
+                label={<span className="text">Current Password</span> }
+                // value={userSettings.email}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                name="new password"
+                variant="outlined"
+                required
+                fullWidth
+                id="newPass"
+                label={<span className="text">New Password</span> }
+                // value={userSettings.password}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            color="primary"
+            variant="contained"
+            className={classes.submit}
+            onClick={handleOnSubmit}
+          >
+            <div component="h1" variant="button" className="text">
+            Save Updates
+            </div>
+          </Button>
+        </form>
+      </div>
+      </Box>
       <Box mt={5}>
         <Copyright />
       </Box>
     </Container>
+   
+    
   )
 }

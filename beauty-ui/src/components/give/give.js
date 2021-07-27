@@ -14,6 +14,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import apiClient from "../../services/apiClient";
+
 // import { WithStyles } from "@material-ui/core";
 
 //Styles:CSS using Material UI
@@ -159,8 +160,6 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
           // console.log(form.quantity)
         return  d + data.givings.quantity})
         
-    
-    
       }
 
       console.log(data.givings.is_used)
@@ -172,15 +171,11 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
           // console.log(data)
           // console.log(form.quantity)
         return  r + data.givings.quantity})
-        
 
       }
-
-
       setIsProcessing(false)
 
-
-     navigate("/give/giveSuccess")
+    navigate("/give/giveSuccess")
     
     }
     

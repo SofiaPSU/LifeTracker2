@@ -1,9 +1,8 @@
 import './giveSuccess.css';
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-
-import CurrentLocation from '../give/map';
 import { Typography } from '@material-ui/core';
+import Geocode from "react-geocode";
 
 const mapStyles = {
   width: '100%',
@@ -14,11 +13,14 @@ const mapStyles = {
 // export default function GiveSuccess(){
 
 export class MapContainer extends Component {
+  
   state = {
     showingInfoWindow: false,  // Hides or shows the InfoWindow
     activeMarker: {},          // Shows the active marker upon click
-    selectedPlace: {}          // Shows the InfoWindow to the selected place upon a marker
+    selectedPlace: {},          // Shows the InfoWindow to the selected place upon a marker
+    userPosition: {}
   };
+
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -34,8 +36,25 @@ export class MapContainer extends Component {
       });
     }
   };
+
+  componentDidMount(){
+    Geocode.fromAddress(this.props.user.zip_code).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+        this.setState({
+          ...this.state,
+          userPosition: {latitude: lat, longitude: lng}
+        })
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   render() {
-  
+    Geocode.setApiKey("AIzaSyAYlQ6lsXJey1Uaca8vUVExDcHP4TLGgis");
     return (
     <div>
       <h1 className="title">
@@ -50,6 +69,12 @@ export class MapContainer extends Component {
         zoom={12}
         style={mapStyles}
       >
+        <Marker
+          position={ { lat: this.state.userPosition.latitude, lng: this.state.userPosition.longitude } }
+          onClick={this.onMarkerClick}
+          name={'Hīrā Drop Off Center (1765 California St, San Francisco, CA 94109)'}
+          
+        />
         <Marker
           position={ {lat: 37.7749, lng: -122.4194} }
           onClick={this.onMarkerClick}
@@ -85,7 +110,7 @@ export class MapContainer extends Component {
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
-  
+        
   
         {/* <CurrentLocation
         centerAroundCurrentLocation
