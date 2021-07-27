@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button"
 import {  Container} from "@material-ui/core"
 import StyledMenu from "../Menu/Menu"
 
-export default function Navbar({ user, logoutUser, isAuthenticated }){
+export default function Navbar({ user, logoutUser, isAuthenticated, intialized }){
 
     return (
          <Container style={{ backgroundColor: '#FFFFFF', height: '5vh'}}>
@@ -32,7 +32,10 @@ export default function Navbar({ user, logoutUser, isAuthenticated }){
                             Tips
                         </Link>
                     </li>
-                    {user?.id? (
+                    {/* user?.id? */}
+                    {/* isAuthenticated is 'false'  by default so if true show the logout button if still false show 
+                    the login and register button*/}
+                    { !isAuthenticated? (
                     <StyledMenu logoutUser={logoutUser}/>
                     ):(<><Button className="login" variant="outlined" size='small'>
                         <Link to="/login">
