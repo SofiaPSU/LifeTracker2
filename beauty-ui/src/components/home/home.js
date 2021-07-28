@@ -2,7 +2,7 @@ import './home.css';
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button"
-import { Box, Typography, makeStyles, Grid, Link, Container} from "@material-ui/core"
+import { Box, Typography, makeStyles, Grid, Link, Container, Image, CardMedia, CardContent } from "@material-ui/core"
 //import Container from '@material-ui/core/Container';
 
 //for grids
@@ -84,17 +84,46 @@ perfumePaper: {
     padding: 25,
             
 },   
-wrapper: {
-    height: 580,
-    // width: '100vw',
-    margin: "auto",
-    background: `url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/packaging-1565375161.png?resize=980:*)`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    marginTop:'10px',
-    opacity:'0.8',
+
+heroSection:{
+    display:'flex',
 
 },
+wrapper: {
+    height:580,
+    marginTop:'10px',
+    
+    margin: "auto",
+    background: `linear-gradient(
+        rgba(245, 245, 245, 1),
+        rgba(0, 0, 0, .0)
+        
+      )
+     ,url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/packaging-1565375161.png?resize=980:*)`,
+    // backgroundColor: `linear-gradient( rgba(0, 0, 0, 0.5), `
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    
+    
+
+},
+
+overlay:{
+    // position: 'absolute',
+    // top: 0,
+    // bottom: 0,
+    // right: 0,
+    // left: 0,
+    // backgroundColor: 'rgba(0,0,0,.6)',
+    // backgroundImage: `url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/packaging-1565375161.png?resize=980:*)`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
+    // backgroundColor:'rgba(0,0,0,.2)',
+    // opacity:'0.5',
+    // padding:'50%',
+
+},
+
 title: {
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
@@ -105,7 +134,8 @@ title: {
     margin: "auto",
     letterSpacing: "-0.015em",
     color: "#000000",
-    fontWeight:'10'
+    fontWeight:'10',
+    opacity:1,
 
 },
 subtitle: {
@@ -115,7 +145,7 @@ subtitle: {
     padding: 20,
     fontFamily: "Arima Madurai",
     fontStyle: "normal",
-    fontWeight: "normal",
+    fontWeight: "heavy",
     fontSize: 20,
     textAlign: "center",
     letterSpacing: "-0.015em",
@@ -199,9 +229,11 @@ productSubtitle: {
 
 }));
 
-export default function Home() {
+export default function Home(props) {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles(); //classes invokes useStyles hook
+  const { hero } = props;
+
 
   const handleChange = (event) => {
     setSpacing(Number(event.target.value));
@@ -209,22 +241,27 @@ export default function Home() {
 
   return (
 
- <Container maxWidth="lg" minWidth='600px' style={{ backgroundColor: '#ffffff',height: '100vh' }}> 
+ <Container maxWidth="lg" minwidth='600px' style={{ backgroundColor: '#ffffff',height: '100vh' }}> 
     
     <Box className={classes.wrapper}>
-        <Typography variant="h1" className={classes.title}>
-            Making Beauty Sustainable
-        </Typography>
-        <Typography variant="body1" className={classes.subtitle}>
-            Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
-        </Typography>
-        <Button variant="outlined" color="default" size='medium' className={classes.registerBTN}>
-
-            <a href="/register">
-                Register
-            </a>
-        </Button>
+        {/* <CardMedia className={classes.wrapper} /> */}
+        <CardContent className={classes.overlay}>
+            <Typography variant="h1" className={classes.title}>
+                    Making Beauty Sustainable
+            </Typography>
+            
+            <Typography variant="body1" className={classes.subtitle}>
+                    Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
+            </Typography>
+        
+            <Button variant="outlined" color="default" size='medium' className={classes.registerBTN}>
+                <a href="/register"> Register </a>
+            </Button>
+              
+        </CardContent>
+        
     </Box>
+    
 
     <Typography className={classes.bottom}>
         We accept most skincare and makeup products for donations and recycling. We priotize  the products that most people use as part of their daily routine. Whether they come in paper, plastic, or glass, we will gladly accept them. Here are some of examples of what we accept....
