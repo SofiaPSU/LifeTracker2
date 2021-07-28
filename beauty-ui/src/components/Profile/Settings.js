@@ -70,10 +70,17 @@ export default function Settings({user}) {
   const [userSettings, setUserSettings] = useState({
     first_name: "",
     last_name: "",
+    email: "",
     age:"",
     zip_code:"",
     password: ""
   })
+
+  const [hide, show] = useState(true)
+  const showPasswordBox = () =>{
+    show(hide ? false : true)
+}
+
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
@@ -85,6 +92,7 @@ export default function Settings({user}) {
       zip_code: userSettings.zip_code,
       first_name: userSettings.first_name,
       last_name: userSettings.last_name,
+      email: userSettings.email,
     })
   }
   
@@ -122,6 +130,19 @@ export default function Settings({user}) {
                 label={<span className="text">Last Name</span> }
                 name="last_name"
                 value={userSettings.last_name}
+                onChange={handleOnChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="email"
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label={<span className="text">Email</span> }
+                name="email"
+                value={userSettings.email}
                 onChange={handleOnChange}
               />
             </Grid>
@@ -166,56 +187,12 @@ export default function Settings({user}) {
           </Button>
         </form>
       </div>
+
       <Box>
-        <h1 className="text">
-          Update Email
-        </h1>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="current email"
-                variant="outlined"
-                required
-                fullWidth
-                id="currEmail"
-                label={<span className="text">Current Email</span> }
-                // value={userSettings.email}
-                onChange={handleOnChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="new email"
-                variant="outlined"
-                required
-                fullWidth
-                id="newEmail"
-                label={<span className="text">New Email</span> }
-                // value={userSettings.password}
-                onChange={handleOnChange}
-              />
-            </Grid>
-            </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            color="primary"
-            variant="contained"
-            className={classes.submit}
-            onClick={handleOnSubmit}
-          >
-            <div component="h1" variant="button" className="text">
-            Save Updates
-            </div>
-          </Button>
-        </form>
-      
         <div className={classes.paper}>
         <h1 className="text">
           Update Password
         </h1>
-        
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -230,18 +207,12 @@ export default function Settings({user}) {
                 onChange={handleOnChange}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="new password"
-                variant="outlined"
-                required
-                fullWidth
-                id="newPass"
-                label={<span className="text">New Password</span> }
-                // value={userSettings.password}
-                onChange={handleOnChange}
-              />
             </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel onClick={showPasswordBox}
+                control={<Checkbox value="showPassword" color="primary" />}
+                label={<span className="text">Show Password</span> }
+              />
             </Grid>
           <Button
             type="submit"
@@ -252,7 +223,7 @@ export default function Settings({user}) {
             onClick={handleOnSubmit}
           >
             <div component="h1" variant="button" className="text">
-            Save Updates
+            Confirm Password
             </div>
           </Button>
         </form>
