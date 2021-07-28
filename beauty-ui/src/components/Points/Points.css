@@ -11,14 +11,26 @@
     grid-column: 1;
     grid-row: 1;
     padding:2%;
+    width: fit-content;
     height: fit-content;
 }
 .free{
     grid-column: 2;
     grid-row: 1;
     padding:2%;
+    width: fit-content;
     height:max-content;
 }
 .body{
     padding: 5%;
+}
+.MuiButton-root{
+
+}
+.MuiButton-label{
+    font-family: 'Arima Madurai', cursive ;
+    font-size: 15px;
+}
+h2{
+    padding:2%;
 }
