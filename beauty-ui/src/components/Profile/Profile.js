@@ -33,9 +33,9 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
             <div className="info">
                 <div className="avatar">
                     {user.profile_pic?(
-                        <Avatar src={user.profile_pic} style={{ height: '100px', width: '100px' }}></Avatar>
+                        <Avatar src={user.profile_pic} style={{ height: '150px', width: '150px' }}></Avatar>
                         ):(
-                    <Avatar style={{ height: '100px', width: '100px' }} src="/broken-image.jpg"></Avatar>)
+                    <Avatar style={{ height: '150px', width: '150px' }} src="/broken-image.jpg"></Avatar>)
                         }
                 </div>
                
